@@ -3,1015 +3,642 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interclasse 2026 — Futsal & Vôlei</title>
+<title>Interclasse 2026 Noturno — Etec Prof. Mário Antônio Verza</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap');
+:root{
+  --bg:#0d0f1a;--surface:#141728;--surface2:#1c2035;--border:#252a45;
+  --futsal:#f97316;--futsal-dim:rgba(249,115,22,.18);
+  --volei:#22d3ee;--volei-dim:rgba(34,211,238,.18);
+  --gold:#fbbf24;--gold-dim:rgba(251,191,36,.15);
+  --text:#e2e8f0;--muted:#64748b;--win:#4ade80;
+  --r:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-size:15px;line-height:1.5}
 
-  :root {
-    --bg: #0d0f1a;
-    --surface: #141728;
-    --surface2: #1c2035;
-    --border: #2a2f4a;
-    --futsal: #f97316;
-    --futsal-glow: rgba(249,115,22,.25);
-    --volei: #22d3ee;
-    --volei-glow: rgba(34,211,238,.25);
-    --gold: #fbbf24;
-    --text: #e2e8f0;
-    --muted: #64748b;
-    --win: #4ade80;
-    --radius: 10px;
-  }
+/* HEADER */
+header{background:linear-gradient(135deg,#0d0f1a 0%,#1a0f2e 50%,#0d0f1a 100%);border-bottom:2px solid var(--border);padding:2rem 1.5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(249,115,22,.1) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--futsal);border:1px solid var(--futsal);border-radius:99px;padding:.2rem .9rem;margin-bottom:.8rem}
+h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,7vw,3.8rem);font-weight:900;line-height:1;letter-spacing:-.01em;text-transform:uppercase}
+h1 span{color:var(--futsal)}
+.hsub{color:var(--muted);margin-top:.4rem;font-size:.92rem}
+.hmeta{display:flex;justify-content:center;gap:1rem;margin-top:1.1rem;flex-wrap:wrap}
+.mpill{background:var(--surface2);border:1px solid var(--border);border-radius:99px;padding:.3rem .9rem;font-size:.8rem;display:flex;align-items:center;gap:.4rem}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Barlow', sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
-    min-height: 100vh;
-  }
+/* NAV */
+nav{display:flex;overflow-x:auto;gap:.4rem;padding:.8rem 1.2rem;background:var(--surface);border-bottom:1px solid var(--border);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;background:transparent;border:1px solid var(--border);border-radius:7px;color:var(--muted);cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.04em;padding:.45rem 1rem;text-transform:uppercase;transition:all .15s;white-space:nowrap}
+.tab:hover{color:var(--text);border-color:var(--muted)}
+.tab.on{background:var(--futsal);border-color:var(--futsal);color:#fff}
+.tab.onv{background:var(--volei);border-color:var(--volei);color:var(--bg)}
 
-  /* ── HEADER ── */
-  header {
-    background: linear-gradient(135deg, #0d0f1a 0%, #1a0f2e 50%, #0d0f1a 100%);
-    border-bottom: 2px solid var(--border);
-    padding: 2rem 1.5rem 1.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  header::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(249,115,22,.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .header-badge {
-    display: inline-block;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: .7rem;
-    font-weight: 700;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--futsal);
-    border: 1px solid var(--futsal);
-    border-radius: 99px;
-    padding: .2rem .8rem;
-    margin-bottom: .8rem;
-  }
-  h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2.4rem, 7vw, 4rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -.01em;
-    text-transform: uppercase;
-  }
-  h1 span { color: var(--futsal); }
-  .header-sub {
-    color: var(--muted);
-    margin-top: .4rem;
-    font-size: .95rem;
-  }
-  .header-meta {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1.2rem;
-    flex-wrap: wrap;
-  }
-  .meta-pill {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 99px;
-    padding: .35rem 1rem;
-    font-size: .82rem;
-    display: flex;
-    align-items: center;
-    gap: .4rem;
-  }
-  .meta-pill .icon { font-size: 1rem; }
+/* SECTIONS */
+.sec{display:none;padding:1.4rem;max-width:1080px;margin:0 auto}
+.sec.on{display:block}
 
-  /* ── NAV TABS ── */
-  nav {
-    display: flex;
-    overflow-x: auto;
-    gap: .5rem;
-    padding: 1rem 1.5rem;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    scrollbar-width: none;
-  }
-  nav::-webkit-scrollbar { display: none; }
-  .tab {
-    flex-shrink: 0;
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--muted);
-    cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: .9rem;
-    font-weight: 600;
-    letter-spacing: .04em;
-    padding: .5rem 1.1rem;
-    text-transform: uppercase;
-    transition: all .18s;
-    white-space: nowrap;
-  }
-  .tab:hover { color: var(--text); border-color: var(--text); }
-  .tab.active {
-    background: var(--futsal);
-    border-color: var(--futsal);
-    color: #fff;
-  }
-  .tab.volei.active {
-    background: var(--volei);
-    border-color: var(--volei);
-    color: var(--bg);
-  }
+h2{font-family:'Barlow Condensed',sans-serif;font-size:1.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:1rem}
+h3{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.55rem}
 
-  /* ── SECTIONS ── */
-  .section { display: none; padding: 1.5rem; max-width: 1100px; margin: 0 auto; }
-  .section.active { display: block; }
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;margin-bottom:.9rem}
+.card.fl{border-left:3px solid var(--futsal)}
+.card.vl{border-left:3px solid var(--volei)}
 
-  h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .03em;
-    margin-bottom: 1rem;
-  }
-  h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .06em;
-    color: var(--muted);
-    margin-bottom: .6rem;
-  }
+/* GRID */
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.9rem}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem}
 
-  /* ── CARDS ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  .card.futsal-card { border-left: 3px solid var(--futsal); }
-  .card.volei-card { border-left: 3px solid var(--volei); }
+/* STATS */
+.stats{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.3rem}
+.sc{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;flex:1;min-width:110px;text-align:center}
+.sn{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;line-height:1}
+.sl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem}
 
-  /* ── GRID ── */
-  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+/* PLAYER */
+.plist{list-style:none}
+.plist li{display:flex;align-items:center;gap:.5rem;padding:.3rem 0;border-bottom:1px solid var(--border);font-size:.83rem}
+.plist li:last-child{border-bottom:none}
+.pnum{width:1.3rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;color:var(--muted);text-align:right;flex-shrink:0}
+.pdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.pturma{font-size:.72rem;color:var(--muted);margin-left:auto;white-space:nowrap}
 
-  /* ── PLAYERS LIST ── */
-  .player-list { list-style: none; }
-  .player-list li {
-    display: flex;
-    align-items: center;
-    gap: .6rem;
-    padding: .35rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: .88rem;
-  }
-  .player-list li:last-child { border-bottom: none; }
-  .player-num {
-    width: 1.4rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: .75rem;
-    color: var(--muted);
-    text-align: right;
-    flex-shrink: 0;
-  }
-  .player-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .dot-futsal { background: var(--futsal); }
-  .dot-volei { background: var(--volei); }
-  .dot-both {
-    background: linear-gradient(135deg, var(--futsal) 50%, var(--volei) 50%);
-  }
+/* BRACKET */
+.bwrap{overflow-x:auto;padding-bottom:1rem}
+.bracket{display:flex;gap:2.2rem;align-items:flex-start;min-width:580px}
+.rnd{display:flex;flex-direction:column}
+.rlabel{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;padding-left:.3rem}
+.mslot{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:8px;overflow:hidden;width:195px;margin-bottom:1.4rem;position:relative}
+.mteam{padding:.5rem .65rem;font-size:.83rem;background:var(--surface2);border-bottom:1px solid var(--border);font-weight:500;display:flex;align-items:center;justify-content:space-between}
+.mteam:last-child{border-bottom:none}
+.mteam.tbd{color:var(--muted);font-style:italic}
+.mtime{position:absolute;top:-1.1rem;left:0;font-size:.66rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.05em;white-space:nowrap}
+.sbox{background:var(--border);border-radius:3px;min-width:1.4rem;text-align:center;font-size:.75rem;padding:.08rem .25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--muted)}
+.arr{display:flex;align-items:center;color:var(--border);font-size:1.4rem;padding-top:2.2rem}
 
-  /* ── BRACKET ── */
-  .bracket-wrapper { overflow-x: auto; padding-bottom: 1rem; }
-  .bracket {
-    display: flex;
-    gap: 2.5rem;
-    align-items: flex-start;
-    min-width: 600px;
-  }
-  .round { display: flex; flex-direction: column; gap: 0; }
-  .round-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: .6rem;
-    padding-left: .5rem;
-  }
-  .match-slot {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    width: 200px;
-    margin-bottom: 1rem;
-    position: relative;
-  }
-  .match-team {
-    padding: .55rem .7rem;
-    font-size: .85rem;
-    background: var(--surface2);
-    border-bottom: 1px solid var(--border);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .match-team:last-child { border-bottom: none; }
-  .match-team.winner { color: var(--win); font-weight: 600; }
-  .match-team.tbd { color: var(--muted); font-style: italic; }
-  .match-time {
-    position: absolute;
-    top: -1.2rem;
-    left: 0;
-    font-size: .68rem;
-    color: var(--futsal);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    letter-spacing: .05em;
-  }
-  .match-time.volei-time { color: var(--volei); }
-  .score-box {
-    background: var(--border);
-    border-radius: 4px;
-    min-width: 1.5rem;
-    text-align: center;
-    font-size: .78rem;
-    padding: .1rem .3rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    color: var(--muted);
-  }
+/* SCHEDULE */
+.stable{width:100%;border-collapse:collapse}
+.stable th{background:var(--surface2);font-family:'Barlow Condensed',sans-serif;font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.55rem .75rem;text-align:left;border-bottom:2px solid var(--border)}
+.stable td{padding:.65rem .75rem;border-bottom:1px solid var(--border);font-size:.85rem}
+.stable tr:hover td{background:var(--surface2)}
 
-  /* ── SCHEDULE TABLE ── */
-  .schedule-table { width: 100%; border-collapse: collapse; }
-  .schedule-table th {
-    background: var(--surface2);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: .8rem;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: .6rem .8rem;
-    text-align: left;
-    border-bottom: 2px solid var(--border);
-  }
-  .schedule-table td {
-    padding: .7rem .8rem;
-    border-bottom: 1px solid var(--border);
-    font-size: .88rem;
-  }
-  .schedule-table tr:hover td { background: var(--surface2); }
-  .badge {
-    display: inline-block;
-    border-radius: 99px;
-    padding: .15rem .6rem;
-    font-size: .72rem;
-    font-weight: 700;
-    font-family: 'Barlow Condensed', sans-serif;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-  }
-  .badge-futsal { background: var(--futsal-glow); color: var(--futsal); border: 1px solid var(--futsal); }
-  .badge-volei { background: var(--volei-glow); color: var(--volei); border: 1px solid var(--volei); }
-  .badge-final { background: rgba(251,191,36,.15); color: var(--gold); border: 1px solid var(--gold); }
+/* BADGES */
+.bdf{display:inline-block;border-radius:99px;padding:.12rem .55rem;font-size:.7rem;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--futsal-dim);color:var(--futsal);border:1px solid var(--futsal)}
+.bdv{display:inline-block;border-radius:99px;padding:.12rem .55rem;font-size:.7rem;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--volei-dim);color:var(--volei);border:1px solid var(--volei)}
+.bdg{display:inline-block;border-radius:99px;padding:.12rem .55rem;font-size:.7rem;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold)}
+.chip{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.15rem .5rem;font-size:.75rem;color:var(--muted)}
 
-  /* ── MATERIALS ── */
-  .material-item {
-    display: flex;
-    align-items: flex-start;
-    gap: .8rem;
-    padding: .8rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .material-item:last-child { border-bottom: none; }
-  .material-icon {
-    font-size: 1.4rem;
-    flex-shrink: 0;
-    width: 2.2rem;
-    text-align: center;
-  }
-  .material-info { flex: 1; }
-  .material-name { font-weight: 600; font-size: .9rem; }
-  .material-qty {
-    color: var(--futsal);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: .85rem;
-    font-weight: 700;
-  }
-  .material-note { color: var(--muted); font-size: .8rem; margin-top: .15rem; }
-  .check-box {
-    width: 1.4rem; height: 1.4rem;
-    border: 2px solid var(--border);
-    border-radius: 4px;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: all .15s;
-    display: flex; align-items: center; justify-content: center;
-    margin-top: .1rem;
-    user-select: none;
-  }
-  .check-box.done { background: var(--win); border-color: var(--win); }
-  .check-box.done::after { content: '✓'; color: var(--bg); font-size: .75rem; font-weight: 700; }
+/* MATERIALS */
+.mitem{display:flex;align-items:flex-start;gap:.75rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.mitem:last-child{border-bottom:none}
+.mico{font-size:1.35rem;flex-shrink:0;width:2rem;text-align:center}
+.minfo{flex:1}
+.mname{font-weight:600;font-size:.88rem}
+.mqty{color:var(--futsal);font-family:'Barlow Condensed',sans-serif;font-size:.83rem;font-weight:700}
+.mnote{color:var(--muted);font-size:.78rem;margin-top:.1rem}
+.chk{width:1.35rem;height:1.35rem;border:2px solid var(--border);border-radius:4px;cursor:pointer;flex-shrink:0;transition:all .15s;display:flex;align-items:center;justify-content:center;margin-top:.1rem;user-select:none}
+.chk.done{background:var(--win);border-color:var(--win)}
+.chk.done::after{content:'✓';color:var(--bg);font-size:.72rem;font-weight:700}
 
-  /* ── SORTEIO / DRAW ── */
-  .draw-container { display: flex; flex-direction: column; gap: .8rem; }
-  .draw-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: .6rem;
-    background: var(--futsal);
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: .05em;
-    padding: .7rem 1.5rem;
-    text-transform: uppercase;
-    transition: all .18s;
-  }
-  .draw-btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
-  .draw-btn.volei-btn { background: var(--volei); color: var(--bg); }
-  .team-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: .8rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: border-color .2s;
-  }
-  .team-card.drawn { border-color: var(--futsal); }
-  .team-card.drawn-volei { border-color: var(--volei); }
-  .team-name-big {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-  }
-  .seed-badge {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: .8rem;
-    font-weight: 700;
-    color: var(--muted);
-  }
+/* RULES */
+.ritem{display:flex;gap:.75rem;padding:.65rem 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.rnum{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:900;color:var(--futsal);min-width:1.6rem;line-height:1.3}
 
-  /* ── STATS BAR ── */
-  .stats-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-  }
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: .9rem 1.2rem;
-    flex: 1;
-    min-width: 120px;
-    text-align: center;
-  }
-  .stat-number {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem;
-    font-weight: 900;
-    line-height: 1;
-  }
-  .stat-label { font-size: .73rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: .2rem; }
+/* TEAM COLOR DOTS */
+.dA{background:#f97316}.dB{background:#22d3ee}.dC{background:#a78bfa}.dD{background:#4ade80}
+.d1{background:#f97316}.d2{background:#22d3ee}.d3{background:#a78bfa}.d4{background:#4ade80}
 
-  /* ── RULES ── */
-  .rule-item {
-    display: flex;
-    gap: .8rem;
-    padding: .7rem 0;
-    border-bottom: 1px solid var(--border);
-    align-items: flex-start;
-  }
-  .rule-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 900;
-    color: var(--futsal);
-    min-width: 1.8rem;
-    line-height: 1.3;
-  }
+/* ALERT */
+.alert{background:var(--gold-dim);border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:.75rem 1rem;color:var(--gold);font-size:.83rem;margin-bottom:1rem;display:flex;gap:.55rem;align-items:flex-start}
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .bracket { min-width: 500px; }
-    .match-slot { width: 160px; }
-    .grid-2 { grid-template-columns: 1fr; }
-  }
+/* DRAW */
+.dbtn{display:inline-flex;align-items:center;gap:.5rem;background:var(--futsal);border:none;border-radius:8px;color:#fff;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:.05em;padding:.65rem 1.3rem;text-transform:uppercase;transition:all .15s;margin-right:.5rem;margin-bottom:.8rem}
+.dbtn:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.dbtnv{background:var(--volei);color:var(--bg)}
+.tcard{background:var(--surface2);border:2px solid var(--border);border-radius:9px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;transition:border-color .2s}
+.tcard.fon{border-color:var(--futsal)}
+.tcard.von{border-color:var(--volei)}
+.tname{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.tseed{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;color:var(--muted)}
+.tclr{width:12px;height:12px;border-radius:50%;flex-shrink:0}
 
-  /* ── HIGHLIGHT CHIP ── */
-  .chip {
-    display: inline-block;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: .2rem .6rem;
-    font-size: .78rem;
-    color: var(--muted);
-  }
-
-  .section-divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 1.5rem 0;
-  }
-
-  .alert {
-    background: rgba(251,191,36,.08);
-    border: 1px solid rgba(251,191,36,.3);
-    border-radius: 8px;
-    padding: .8rem 1rem;
-    color: var(--gold);
-    font-size: .85rem;
-    margin-bottom: 1rem;
-    display: flex;
-    gap: .6rem;
-    align-items: flex-start;
-  }
+@media(max-width:600px){.bracket{min-width:480px}.mslot{width:155px}.g2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="header-badge">⚽ Interclasse 2026 🏐</div>
+  <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem">Etec Professor Mário Antônio Verza</p>
+  <div class="badge">⚽ Interclasse 2026 — Noturno 🏐</div>
   <h1>Futsal <span>&</span> Vôlei</h1>
-  <p class="header-sub">Organização completa — sorteio, chaves e cronograma</p>
-  <div class="header-meta">
-    <div class="meta-pill"><span class="icon">📅</span> Dia único</div>
-    <div class="meta-pill"><span class="icon">🕖</span> 19h00 – 22h30</div>
-    <div class="meta-pill"><span class="icon">🏫</span> 6 turmas</div>
-    <div class="meta-pill"><span class="icon">👥</span> 42 inscritos</div>
+  <p class="hsub">4 times mistos · Sem paralelo · 19h – 22h30</p>
+  <div class="hmeta">
+    <div class="mpill">📅 Dia único</div>
+    <div class="mpill">🕖 19h00 – 22h30</div>
+    <div class="mpill">👥 27 no Futsal</div>
+    <div class="mpill">👥 32 no Vôlei</div>
+    <div class="mpill">🏫 6 turmas misturadas</div>
   </div>
 </header>
 
 <nav>
-  <button class="tab active" onclick="goTab('visao')">📊 Visão Geral</button>
-  <button class="tab" onclick="goTab('inscritos')">📋 Inscritos</button>
-  <button class="tab" onclick="goTab('sorteio')">🎲 Sorteio</button>
-  <button class="tab" onclick="goTab('chave-futsal')">⚽ Chave Futsal</button>
-  <button class="tab volei" onclick="goTab('chave-volei')">🏐 Chave Vôlei</button>
-  <button class="tab" onclick="goTab('cronograma')">🕐 Cronograma</button>
-  <button class="tab" onclick="goTab('materiais')">🛒 Materiais</button>
-  <button class="tab" onclick="goTab('regras')">📜 Regras</button>
+  <button class="tab on"  onclick="goTab('visao')">📊 Visão Geral</button>
+  <button class="tab"     onclick="goTab('times')">👕 Times</button>
+  <button class="tab"     onclick="goTab('sorteio')">🎲 Sorteio</button>
+  <button class="tab"     onclick="goTab('chave-f')">⚽ Chave Futsal</button>
+  <button class="tab"     onclick="goTab('chave-v')">🏐 Chave Vôlei</button>
+  <button class="tab"     onclick="goTab('cronograma')">🕐 Cronograma</button>
+  <button class="tab"     onclick="goTab('materiais')">🛒 Materiais</button>
+  <button class="tab"     onclick="goTab('regras')">📜 Regras</button>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════ VISÃO GERAL -->
-<div id="tab-visao" class="section active">
+<!-- VISÃO GERAL -->
+<div id="tab-visao" class="sec on">
   <h2>📊 Visão Geral</h2>
-
-  <div class="stats-row">
-    <div class="stat-card">
-      <div class="stat-number" style="color:var(--futsal)">27</div>
-      <div class="stat-label">Futsal</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number" style="color:var(--volei)">33</div>
-      <div class="stat-label">Vôlei</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number" style="color:var(--gold)">6</div>
-      <div class="stat-label">Turmas</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">3h30</div>
-      <div class="stat-label">Duração</div>
-    </div>
+  <div class="stats">
+    <div class="sc"><div class="sn" style="color:var(--futsal)">4</div><div class="sl">Times Futsal</div></div>
+    <div class="sc"><div class="sn" style="color:var(--volei)">4</div><div class="sl">Times Vôlei</div></div>
+    <div class="sc"><div class="sn" style="color:var(--gold)">6</div><div class="sl">Jogos no dia</div></div>
+    <div class="sc"><div class="sn">3h30</div><div class="sl">Duração</div></div>
   </div>
 
-  <div class="alert">
-    ⚠️ <span><strong>Atenção:</strong> A turma <strong>Enfermagem</strong> tem apenas 1 inscrito no Futsal e 5 no Vôlei. Recomenda-se mesclar Enfermagem com outra turma pequena ou convidar mais alunos para completar o time de futsal.</span>
-  </div>
+  <div class="alert">⚠️ <span>Times são <strong>mistos</strong>: alunos de turmas diferentes em cada time. O sorteio garante equilíbrio. Se vierem alunos novos no dia, distribua 1 por time começando pelo time com menos jogadores.</span></div>
 
-  <div class="grid-2">
-    <div class="card futsal-card">
-      <h3>⚽ Futsal — Times</h3>
-      <table style="width:100%;font-size:.85rem">
-        <tr><td>1 Informática</td><td style="text-align:right;color:var(--futsal);font-weight:700">7 jogadores</td></tr>
-        <tr><td>1 Administração</td><td style="text-align:right;color:var(--futsal);font-weight:700">5 jogadores</td></tr>
-        <tr><td>Contabilidade</td><td style="text-align:right;color:var(--futsal);font-weight:700">5 jogadores</td></tr>
-        <tr><td>3 Administração</td><td style="text-align:right;color:var(--futsal);font-weight:700">5 jogadores</td></tr>
-        <tr><td>3 Informática</td><td style="text-align:right;color:var(--futsal);font-weight:700">4 jogadores</td></tr>
-        <tr><td style="color:var(--muted)">Enfermagem*</td><td style="text-align:right;color:var(--muted)">1 jogador ⚠️</td></tr>
-      </table>
-      <p style="color:var(--muted);font-size:.75rem;margin-top:.6rem">* Enfermagem precisa reforços para completar o time</p>
+  <div class="g2">
+    <div class="card fl">
+      <h3>⚽ Futsal — 4 Times (27 jogadores)</h3>
+      <div style="font-size:.85rem">
+        <div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid var(--border)"><span>🟠 <strong>Time A</strong></span><span class="chip">7 jog.</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid var(--border)"><span>🔵 <strong>Time B</strong></span><span class="chip">7 jog.</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid var(--border)"><span>🟣 <strong>Time C</strong></span><span class="chip">7 jog.</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.25rem 0"><span>🟢 <strong>Time D</strong></span><span class="chip">6 jog.</span></div>
+      </div>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:.6rem">Formato: 2 semis + final. Total 3 jogos de 20 min cada.</p>
     </div>
-    <div class="card volei-card">
-      <h3>🏐 Vôlei — Times</h3>
-      <table style="width:100%;font-size:.85rem">
-        <tr><td>1 Administração</td><td style="text-align:right;color:var(--volei);font-weight:700">8 jogadores</td></tr>
-        <tr><td>1 Informática</td><td style="text-align:right;color:var(--volei);font-weight:700">8 jogadores</td></tr>
-        <tr><td>Contabilidade</td><td style="text-align:right;color:var(--volei);font-weight:700">7 jogadores</td></tr>
-        <tr><td>Enfermagem</td><td style="text-align:right;color:var(--volei);font-weight:700">5 jogadores</td></tr>
-        <tr><td>3 Administração</td><td style="text-align:right;color:var(--volei);font-weight:700">4 jogadores</td></tr>
-        <tr><td>3 Informática</td><td style="text-align:right;color:var(--volei);font-weight:700">1 jogador ⚠️</td></tr>
-      </table>
-      <p style="color:var(--muted);font-size:.75rem;margin-top:.6rem">* 3 Info precisa reforços para completar o time</p>
+    <div class="card vl">
+      <h3>🏐 Vôlei — 4 Times (32 jogadores)</h3>
+      <div style="font-size:.85rem">
+        <div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid var(--border)"><span>🟠 <strong>Time 1</strong></span><span class="chip">9 jog.</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid var(--border)"><span>🔵 <strong>Time 2</strong></span><span class="chip">8 jog.</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid var(--border)"><span>🟣 <strong>Time 3</strong></span><span class="chip">8 jog.</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.25rem 0"><span>🟢 <strong>Time 4</strong></span><span class="chip">8 jog.</span></div>
+      </div>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:.6rem">Formato: 2 semis + final. Total 3 jogos de 25 min cada.</p>
     </div>
   </div>
 
   <div class="card">
-    <h3>📅 Linha do tempo — 19h às 22h30</h3>
-    <div style="position:relative;padding-left:1.5rem;margin-top:.5rem">
-      <div style="position:absolute;left:.45rem;top:0;bottom:0;width:2px;background:var(--border)"></div>
-      <div id="timeline"></div>
+    <h3>🕐 Linha do Tempo — Sequência Intercalada F › V › F › V › F › V</h3>
+    <div style="position:relative;padding-left:1.4rem;margin-top:.4rem">
+      <div style="position:absolute;left:.4rem;top:0;bottom:0;width:2px;background:var(--border)"></div>
+      <div id="tl"></div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════ INSCRITOS -->
-<div id="tab-inscritos" class="section">
-  <h2>📋 Lista de Inscritos</h2>
-  <div id="inscritos-lista"></div>
+<!-- TIMES -->
+<div id="tab-times" class="sec">
+  <h2>👕 Composição dos Times</h2>
+  <p style="color:var(--muted);margin-bottom:1rem">Times mistos formados para equilibrar o número de jogadores. Cada time tem alunos de diferentes turmas.</p>
+  <div class="g2" id="times-futsal-container"></div>
+  <hr style="border:none;border-top:1px solid var(--border);margin:1.2rem 0">
+  <div class="g2" id="times-volei-container"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════ SORTEIO -->
-<div id="tab-sorteio" class="section">
-  <h2>🎲 Sorteio dos Times</h2>
-  <p style="color:var(--muted);margin-bottom:1.2rem">Clique nos botões para sortear a posição de cada time nas chaves. O sorteio é aleatório a cada clique.</p>
-
-  <div class="grid-2">
+<!-- SORTEIO -->
+<div id="tab-sorteio" class="sec">
+  <h2>🎲 Sorteio das Semifinais</h2>
+  <p style="color:var(--muted);margin-bottom:1rem">Clique para sortear qual time enfrenta quem nas semifinais. Pode sortear quantas vezes quiser antes de fixar.</p>
+  <div class="g2">
     <div>
-      <h3>⚽ Futsal — Posições na Chave</h3>
-      <div style="margin-bottom:.8rem">
-        <button class="draw-btn" onclick="sortearFutsal()">🎲 Sortear Futsal</button>
-      </div>
-      <div id="draw-futsal" class="draw-container"></div>
+      <h3>⚽ Futsal</h3>
+      <button class="dbtn" onclick="sortF()">🎲 Sortear Futsal</button>
+      <div id="draw-f"></div>
     </div>
     <div>
-      <h3>🏐 Vôlei — Posições na Chave</h3>
-      <div style="margin-bottom:.8rem">
-        <button class="draw-btn volei-btn" onclick="sortearVolei()">🎲 Sortear Vôlei</button>
-      </div>
-      <div id="draw-volei" class="draw-container"></div>
+      <h3>🏐 Vôlei</h3>
+      <button class="dbtn dbtnv" onclick="sortV()">🎲 Sortear Vôlei</button>
+      <div id="draw-v"></div>
     </div>
   </div>
-  <p style="color:var(--muted);font-size:.8rem;margin-top:1rem">💡 Após sortear, acesse as abas de Chave para ver os confrontos gerados automaticamente.</p>
+  <p style="color:var(--muted);font-size:.8rem;margin-top:.8rem">💡 Após sortear, as chaves e o cronograma são atualizados automaticamente.</p>
 </div>
 
-<!-- ═══════════════════════════════════════════════════ CHAVE FUTSAL -->
-<div id="tab-chave-futsal" class="section">
+<!-- CHAVE FUTSAL -->
+<div id="tab-chave-f" class="sec">
   <h2>⚽ Chave — Futsal</h2>
-  <p style="color:var(--muted);margin-bottom:1.2rem">Formato mata-mata com 5 times. O time melhor classificado no sorteio tem bye (folga) na semifinal.</p>
-  <div class="bracket-wrapper">
-    <div class="bracket" id="bracket-futsal"></div>
-  </div>
+  <p style="color:var(--muted);margin-bottom:1rem">Mata-mata: 2 semifinais → 1 grande final. Tempo de jogo: 2 × 8 min.</p>
+  <div class="bwrap"><div class="bracket" id="bkt-f"></div></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════ CHAVE VÔLEI -->
-<div id="tab-chave-volei" class="section">
+<!-- CHAVE VÔLEI -->
+<div id="tab-chave-v" class="sec">
   <h2>🏐 Chave — Vôlei</h2>
-  <p style="color:var(--muted);margin-bottom:1.2rem">Formato mata-mata com 6 times. Dois jogos de quartas + duas semis + final.</p>
-  <div class="bracket-wrapper">
-    <div class="bracket" id="bracket-volei"></div>
-  </div>
+  <p style="color:var(--muted);margin-bottom:1rem">Mata-mata: 2 semifinais → 1 grande final. Melhor de 3 sets (25 pts / 15 pts no 3º).</p>
+  <div class="bwrap"><div class="bracket" id="bkt-v"></div></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════ CRONOGRAMA -->
-<div id="tab-cronograma" class="section">
-  <h2>🕐 Cronograma Completo</h2>
-  <div class="alert">📌 Todos os horários são aproximados. Futsal e Vôlei ocorrem em paralelo (quadras diferentes).</div>
+<!-- CRONOGRAMA -->
+<div id="tab-cronograma" class="sec">
+  <h2>🕐 Cronograma</h2>
+  <div class="alert">📌 Sequência intercalada: Futsal → Vôlei → Futsal → Vôlei → Futsal → Vôlei. Uma quadra só.</div>
   <div class="card" style="overflow-x:auto">
-    <table class="schedule-table">
+    <table class="stable">
       <thead>
-        <tr>
-          <th>Horário</th>
-          <th>Esporte</th>
-          <th>Confronto</th>
-          <th>Fase</th>
-          <th>Duração</th>
-        </tr>
+        <tr><th>Horário</th><th>Esporte</th><th>Confronto</th><th>Fase</th><th>Duração</th></tr>
       </thead>
-      <tbody id="schedule-body"></tbody>
+      <tbody id="sched"></tbody>
     </table>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════ MATERIAIS -->
-<div id="tab-materiais" class="section">
-  <h2>🛒 Lista de Materiais e Organização</h2>
-  <p style="color:var(--muted);margin-bottom:1rem">Marque os itens conforme forem providenciados. Clique na caixa para checar.</p>
-  <div id="materials-list"></div>
+<!-- MATERIAIS -->
+<div id="tab-materiais" class="sec">
+  <h2>🛒 Checklist de Materiais</h2>
+  <p style="color:var(--muted);margin-bottom:1rem">Clique na caixa ✓ para marcar o item como providenciado.</p>
+  <div id="mats"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════ REGRAS -->
-<div id="tab-regras" class="section">
-  <h2>📜 Regras do Interclasse</h2>
-
-  <div class="grid-2">
-    <div class="card futsal-card">
-      <h3>⚽ Futsal — Regras</h3>
-      <div id="rules-futsal"></div>
-    </div>
-    <div class="card volei-card">
-      <h3>🏐 Vôlei — Regras</h3>
-      <div id="rules-volei"></div>
-    </div>
+<!-- REGRAS -->
+<div id="tab-regras" class="sec">
+  <h2>📜 Regras</h2>
+  <div class="g2">
+    <div class="card fl"><h3>⚽ Futsal</h3><div id="rf"></div></div>
+    <div class="card vl"><h3>🏐 Vôlei</h3><div id="rv"></div></div>
   </div>
-
-  <div class="card" style="margin-top:1rem">
-    <h3>⚖️ Regras Gerais do Interclasse</h3>
-    <div id="rules-geral"></div>
-  </div>
+  <div class="card" style="margin-top:.9rem"><h3>⚖️ Regras Gerais</h3><div id="rg"></div></div>
 </div>
 
 <script>
-// ── DATA ──
-const turmas = ['1 Informática','1 Administração','Contabilidade','3 Administração','3 Informática','Enfermagem'];
-
-const inscritosFutsal = {
-  '1 Informática': ['Fabricio Henrique Nunes Mariano','Hector Henrique de Souza Martins','PEDRO GAMBARY','Ryan Guilherme Figueredo Fabricio','Kaio Felipe Tessaroto','Kenay de Lima Augusto','Rafael de Lima Augusto'],
-  '1 Administração': ['Bryan','Christian Ariel Pimentel Silva','Rafael Adonay Marins Cipriano','Matheus Pietro Perez','Lorenzzo Barbosa Lino Vianna'],
-  'Contabilidade': ['Giovana Morais Nunes','Angela Maria de Oliveira','Anna Carolina Oliveira Souza','Davi Alcides Guimarães Portilho','Enzo Ronqui de Lima'],
-  '3 Administração': ['Luis Felipe Vieira de Lima','Erik Sandro Dos Santos Negreti','Ravis Nunes de Souza','João Lucas Marques Ramires','Lucas De Oliveira Scalada'],
-  '3 Informática': ['Ryan Guilherme','Miguel Alves Bastos','Pedro Rafael da Silveira','João Pedro dos Santos Barbosa'],
-  'Enfermagem': ['Karine Fernandes']
+// ─── DATA ───────────────────────────────────────────────
+const FUTSAL_TIMES = {
+  'Time A':[
+    {n:'Fabricio Henrique Nunes Mariano',t:'1 Informática'},
+    {n:'Hector Henrique De Souza Martins',t:'1 Informática'},
+    {n:'Bryan',t:'1 Administração'},
+    {n:'Christian Ariel Pimentel Silva',t:'1 Administração'},
+    {n:'Giovana Morais Nunes',t:'Contabilidade'},
+    {n:'Luis Felipe Vieira De Lima',t:'3 Administração'},
+    {n:'Ryan Guilherme',t:'3 Informática'},
+  ],
+  'Time B':[
+    {n:'Pedro Gambary',t:'1 Informática'},
+    {n:'Ryan Guilherme Figueredo Fabricio',t:'1 Informática'},
+    {n:'Rafael Adonay Marins Cipriano',t:'1 Administração'},
+    {n:'Angela Maria De Oliveira',t:'Contabilidade'},
+    {n:'Anna Carolina Oliveira Souza',t:'Contabilidade'},
+    {n:'Erik Sandro Dos Santos Negreti',t:'3 Administração'},
+    {n:'Miguel Alves Bastos',t:'3 Informática'},
+  ],
+  'Time C':[
+    {n:'Kaio Felipe Tessaroto',t:'1 Informática'},
+    {n:'Kenay De Lima Augusto',t:'1 Informática'},
+    {n:'Matheus Pietro Perez',t:'1 Administração'},
+    {n:'Davi Alcides Guimarães Portilho',t:'Contabilidade'},
+    {n:'Ravis Nunes De Souza',t:'3 Administração'},
+    {n:'Pedro Rafael Da Silveira',t:'3 Informática'},
+    {n:'Karine Fernandes',t:'Enfermagem'},
+  ],
+  'Time D':[
+    {n:'Rafael De Lima Augusto',t:'1 Informática'},
+    {n:'Lorenzzo Barbosa Lino Vianna',t:'1 Administração'},
+    {n:'Enzo Ronqui De Lima',t:'Contabilidade'},
+    {n:'João Lucas Marques Ramires',t:'3 Administração'},
+    {n:'Lucas De Oliveira Scalada',t:'3 Administração'},
+    {n:'João Pedro Dos Santos Barbosa',t:'3 Informática'},
+  ],
 };
 
-const inscritosVolei = {
-  '1 Administração': ['Bryan','Carla Moreira Leal','Christian Ariel Pimentel Silva','Helen Gabrieli Vieira da Silva Branco','Rafael Adonay Marins Cipriano','Matheus Pietro Perez','Jhon Elder De Camargo Verza','Lorenzzo Barbosa Lino Vianna'],
-  '1 Informática': ['Victor Hugo Freitas de Jesus','Kethillym Rafaela de Souza Ribeiro','PEDRO GAMBARY','Ryan Guilherme Figueredo Fabricio','Kaio Felipe Tessaroto','Kenay de Lima Augusto','Rafael de Lima Augusto','Ryan Augusto Andrade de Souza'],
-  'Contabilidade': ['Ana Karolina Rodrigues de Matos','Emili Beatriz dos Santos Barbosa','Giovana Morais Nunes','Angela Maria de Oliveira','Anna Carolina Oliveira Souza','Joao Antonio','Davi Alcides Guimarães Portilho'],
-  'Enfermagem': ['Bheatriz Ronqui de Lima','Mara Elisa Marques Moreira','Karine Fernandes','Luciana Duarte de Oliveira','Fabiana Cristina Ramos'],
-  '3 Administração': ['Sérgio Henrique Ramos Silva','Erik Sandro Dos Santos Negreti','Ravis Nunes de Souza','João Lucas Marques Ramires'],
-  '3 Informática': ['Ryan Guilherme']
+const VOLEI_TIMES = {
+  'Time 1':[
+    {n:'Victor Hugo Freitas De Jesus',t:'1 Informática'},
+    {n:'Kethillym Rafaela De Souza Ribeiro',t:'1 Informática'},
+    {n:'Bryan',t:'1 Administração'},
+    {n:'Carla Moreira Leal',t:'1 Administração'},
+    {n:'Giovana Morais Nunes',t:'Contabilidade'},
+    {n:'Ana Karolina Rodrigues De Matos',t:'Contabilidade'},
+    {n:'Sérgio Henrique Ramos Silva',t:'3 Administração'},
+    {n:'Bheatriz Ronqui De Lima',t:'Enfermagem'},
+    {n:'Ryan Guilherme',t:'3 Informática'},
+  ],
+  'Time 2':[
+    {n:'Pedro Gambary',t:'1 Informática'},
+    {n:'Ryan Guilherme Figueredo Fabricio',t:'1 Informática'},
+    {n:'Christian Ariel Pimentel Silva',t:'1 Administração'},
+    {n:'Helen Gabrieli Vieira Da Silva Branco',t:'1 Administração'},
+    {n:'Emili Beatriz Dos Santos Barbosa',t:'Contabilidade'},
+    {n:'Angela Maria De Oliveira',t:'Contabilidade'},
+    {n:'Erik Sandro Dos Santos Negreti',t:'3 Administração'},
+    {n:'Mara Elisa Marques Moreira',t:'Enfermagem'},
+  ],
+  'Time 3':[
+    {n:'Kaio Felipe Tessaroto',t:'1 Informática'},
+    {n:'Kenay De Lima Augusto',t:'1 Informática'},
+    {n:'Rafael Adonay Marins Cipriano',t:'1 Administração'},
+    {n:'Matheus Pietro Perez',t:'1 Administração'},
+    {n:'Anna Carolina Oliveira Souza',t:'Contabilidade'},
+    {n:'Ravis Nunes De Souza',t:'3 Administração'},
+    {n:'Luciana Duarte De Oliveira',t:'Enfermagem'},
+    {n:'Joao Antonio',t:'Contabilidade'},
+  ],
+  'Time 4':[
+    {n:'Rafael De Lima Augusto',t:'1 Informática'},
+    {n:'Ryan Augusto Andrade De Souza',t:'1 Informática'},
+    {n:'Jhon Elder De Camargo Verza',t:'1 Administração'},
+    {n:'Lorenzzo Barbosa Lino Vianna',t:'1 Administração'},
+    {n:'Davi Alcides Guimarães Portilho',t:'Contabilidade'},
+    {n:'João Lucas Marques Ramires',t:'3 Administração'},
+    {n:'Fabiana Cristina Ramos',t:'Enfermagem'},
+    {n:'João Pedro Dos Santos Barbosa',t:'3 Informática'},
+  ],
 };
 
-// Estado do sorteio
-let orderFutsal = [...turmas];
-let orderVolei = [...turmas];
-let sorted = { futsal: false, volei: false };
+const COLORS = ['🟠','🔵','🟣','🟢'];
+const CLSCLS = ['dA','dB','dC','dD'];
 
-// ── TABS ──
-function goTab(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  const tabs = { 'visao': 0, 'inscritos': 1, 'sorteio': 2, 'chave-futsal': 3, 'chave-volei': 4, 'cronograma': 5, 'materiais': 6, 'regras': 7 };
-  const btns = document.querySelectorAll('.tab');
-  if (tabs[id] !== undefined) {
-    btns[tabs[id]].classList.add('active');
-    if (id === 'chave-volei') btns[tabs[id]].classList.add('active');
+// sorteio state
+let ordF = ['A','B','C','D'];
+let ordV = ['1','2','3','4'];
+
+// ─── TABS ───────────────────────────────────────────────
+const TAB_IDS = ['visao','times','sorteio','chave-f','chave-v','cronograma','materiais','regras'];
+function goTab(id){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('on');t.classList.remove('onv')});
+  document.getElementById('tab-'+id).classList.add('on');
+  const idx = TAB_IDS.indexOf(id);
+  const tabs = document.querySelectorAll('.tab');
+  if(idx>=0){
+    tabs[idx].classList.add(id==='chave-v'?'onv':'on');
   }
 }
 
-// ── SHUFFLE ──
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+// ─── SHUFFLE ────────────────────────────────────────────
+function shuffle(a){
+  const b=[...a];
+  for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}
+  return b;
 }
 
-// ── SORTEIO FUTSAL ──
-function sortearFutsal() {
-  orderFutsal = shuffle(turmas);
-  sorted.futsal = true;
-  renderDrawFutsal();
-  renderBracketFutsal();
-  renderSchedule();
-}
-
-function sortearVolei() {
-  orderVolei = shuffle(turmas);
-  sorted.volei = true;
-  renderDrawVolei();
-  renderBracketVolei();
-  renderSchedule();
-}
-
-function renderDrawFutsal() {
-  const el = document.getElementById('draw-futsal');
-  el.innerHTML = orderFutsal.map((t, i) => `
-    <div class="team-card drawn">
-      <span class="seed-badge">Seed ${i+1}</span>
-      <span class="team-name-big">${t}</span>
-      <span class="chip">${inscritosFutsal[t].length}j</span>
-    </div>`).join('');
-}
-
-function renderDrawVolei() {
-  const el = document.getElementById('draw-volei');
-  el.innerHTML = orderVolei.map((t, i) => `
-    <div class="team-card drawn-volei">
-      <span class="seed-badge">Seed ${i+1}</span>
-      <span class="team-name-big">${t}</span>
-      <span class="chip">${inscritosVolei[t].length}j</span>
-    </div>`).join('');
-}
-
-// ── BRACKET FUTSAL (5 times: 1 bye, 2 quartas → 2 semis → final) ──
-function renderBracketFutsal() {
-  // 5 times: seed1 tem bye, seed2x5, seed3x4
-  const t = orderFutsal;
-  const el = document.getElementById('bracket-futsal');
-
-  el.innerHTML = `
-    <div class="round">
-      <div class="round-label">Quartas 19h00</div>
-      <div style="margin-top:2rem">
-        <div class="match-slot">
-          <div class="match-time">Jogo 1 — 19h00</div>
-          <div class="match-team">${t[1]} <span class="score-box">–</span></div>
-          <div class="match-team">${t[4]} <span class="score-box">–</span></div>
-        </div>
-      </div>
-      <div style="margin-top:1.8rem">
-        <div class="match-slot">
-          <div class="match-time">Jogo 2 — 19h25</div>
-          <div class="match-team">${t[2]} <span class="score-box">–</span></div>
-          <div class="match-team">${t[3]} <span class="score-box">–</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;color:var(--border);font-size:1.5rem;padding-top:2.5rem">›</div>
-
-    <div class="round">
-      <div class="round-label">Semifinais 20h00</div>
-      <div class="match-slot">
-        <div class="match-time">Jogo 3 — 20h00</div>
-        <div class="match-team tbd">🏆 ${t[0]} (bye)</div>
-        <div class="match-team tbd">Vencedor J1</div>
-      </div>
-      <div style="margin-top:1.8rem" class="match-slot">
-        <div class="match-time">Jogo 4 — 20h25</div>
-        <div class="match-team tbd">Vencedor J2</div>
-        <div class="match-team tbd">—</div>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;color:var(--border);font-size:1.5rem;padding-top:.5rem">›</div>
-
-    <div class="round">
-      <div class="round-label">🏆 Final 21h00</div>
-      <div class="match-slot" style="border-color:var(--gold)">
-        <div class="match-time" style="color:var(--gold)">Final — 21h00</div>
-        <div class="match-team tbd" style="color:var(--gold)">Vencedor S1</div>
-        <div class="match-team tbd" style="color:var(--gold)">Vencedor S2</div>
-      </div>
-    </div>
-  `;
-}
-
-// ── BRACKET VÔLEI (6 times: 2 quartas + 2 semis + final) ──
-function renderBracketVolei() {
-  const t = orderVolei;
-  const el = document.getElementById('bracket-volei');
-
-  el.innerHTML = `
-    <div class="round">
-      <div class="round-label">Quartas 19h00</div>
-      <div style="margin-top:1rem">
-        <div class="match-slot">
-          <div class="match-time volei-time">Jogo A — 19h00</div>
-          <div class="match-team">${t[3]} <span class="score-box">–</span></div>
-          <div class="match-team">${t[4]} <span class="score-box">–</span></div>
-        </div>
-      </div>
-      <div style="margin-top:1.4rem">
-        <div class="match-slot">
-          <div class="match-time volei-time">Jogo B — 19h25</div>
-          <div class="match-team">${t[2]} <span class="score-box">–</span></div>
-          <div class="match-team">${t[5]} <span class="score-box">–</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;color:var(--border);font-size:1.5rem;padding-top:2rem">›</div>
-
-    <div class="round">
-      <div class="round-label">Semifinais 20h10</div>
-      <div class="match-slot">
-        <div class="match-time volei-time">Semi 1 — 20h10</div>
-        <div class="match-team tbd">${t[0]}</div>
-        <div class="match-team tbd">Vencedor A</div>
-      </div>
-      <div style="margin-top:1.4rem" class="match-slot">
-        <div class="match-time volei-time">Semi 2 — 20h40</div>
-        <div class="match-team tbd">${t[1]}</div>
-        <div class="match-team tbd">Vencedor B</div>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;color:var(--border);font-size:1.5rem;padding-top:.5rem">›</div>
-
-    <div class="round">
-      <div class="round-label">🏆 Final 21h30</div>
-      <div class="match-slot" style="border-color:var(--volei)">
-        <div class="match-time volei-time" style="color:var(--volei)">Final — 21h30</div>
-        <div class="match-team tbd" style="color:var(--volei)">Vencedor S1</div>
-        <div class="match-team tbd" style="color:var(--volei)">Vencedor S2</div>
-      </div>
-    </div>
-  `;
-}
-
-// ── CRONOGRAMA ──
-function renderSchedule() {
-  const t = orderFutsal;
-  const v = orderVolei;
-  const rows = [
-    { hora:'19h00', esp:'⚽ Futsal', conf: `${t[1]} × ${t[4]}`, fase:'Quartas', dur:'20 min'},
-    { hora:'19h00', esp:'🏐 Vôlei',  conf: `${v[3]} × ${v[4]}`, fase:'Quartas', dur:'25 min'},
-    { hora:'19h25', esp:'⚽ Futsal', conf: `${t[2]} × ${t[3]}`, fase:'Quartas', dur:'20 min'},
-    { hora:'19h25', esp:'🏐 Vôlei',  conf: `${v[2]} × ${v[5]}`, fase:'Quartas', dur:'25 min'},
-    { hora:'19h55', esp:'⚽ Futsal', conf: `${t[0]} (BYE) × Venc. J1`, fase:'Semis', dur:'20 min'},
-    { hora:'20h00', esp:'—',         conf: 'Intervalo / Água / Reposição', fase:'Pausa', dur:'10 min'},
-    { hora:'20h10', esp:'🏐 Vôlei',  conf: `${v[0]} × Venc. A`, fase:'Semis', dur:'25 min'},
-    { hora:'20h20', esp:'⚽ Futsal', conf: 'Venc. J2 × —', fase:'Semis', dur:'20 min'},
-    { hora:'20h40', esp:'🏐 Vôlei',  conf: `${v[1]} × Venc. B`, fase:'Semis', dur:'25 min'},
-    { hora:'21h00', esp:'⚽ Futsal', conf: 'Grande Final ⚽🏆', fase:'Final', dur:'20 min'},
-    { hora:'21h30', esp:'🏐 Vôlei',  conf: 'Grande Final 🏐🏆', fase:'Final', dur:'25 min'},
-    { hora:'22h00', esp:'🎉',        conf: 'Premiação & Encerramento', fase:'Premiação', dur:'30 min'},
-    { hora:'22h30', esp:'🔚',        conf: 'Fim do evento', fase:'—', dur:'—'},
-  ];
-
-  const body = document.getElementById('schedule-body');
-  body.innerHTML = rows.map(r => {
-    let badge = r.esp.includes('Futsal') ? '<span class="badge badge-futsal">Futsal</span>'
-      : r.esp.includes('Vôlei') ? '<span class="badge badge-volei">Vôlei</span>'
-      : r.fase === 'Final' ? '<span class="badge badge-final">FINAL</span>'
-      : `<span class="chip">${r.esp}</span>`;
-    return `<tr>
-      <td><strong>${r.hora}</strong></td>
-      <td>${badge}</td>
-      <td>${r.conf}</td>
-      <td><span class="chip">${r.fase}</span></td>
-      <td style="color:var(--muted)">${r.dur}</td>
-    </tr>`;
-  }).join('');
-}
-
-// ── INSCRITOS ──
-function renderInscritos() {
-  const el = document.getElementById('inscritos-lista');
-  el.innerHTML = turmas.map(turma => {
-    const pf = inscritosFutsal[turma] || [];
-    const pv = inscritosVolei[turma] || [];
-    const todos = [...new Set([...pf, ...pv])].sort();
-    const items = todos.map((p, i) => {
-      const nf = pf.includes(p), nv = pv.includes(p);
-      const dot = nf && nv ? 'dot-both' : nf ? 'dot-futsal' : 'dot-volei';
-      const tags = [nf && '<span class="badge badge-futsal">Futsal</span>', nv && '<span class="badge badge-volei">Vôlei</span>'].filter(Boolean).join(' ');
-      return `<li><span class="player-num">${i+1}</span><span class="player-dot ${dot}"></span><span style="flex:1">${p}</span>${tags}</li>`;
+// ─── TIMES RENDER ───────────────────────────────────────
+function renderTimes(){
+  const cF = document.getElementById('times-futsal-container');
+  const cV = document.getElementById('times-volei-container');
+  cF.innerHTML = '<div style="grid-column:1/-1"><h3 style="font-size:1.1rem;color:var(--futsal);margin-bottom:.6rem">⚽ Times de Futsal</h3></div>'
+    + Object.entries(FUTSAL_TIMES).map(([name,players],i)=>{
+      const items = players.map((p,j)=>`<li><span class="pnum">${j+1}</span><span class="pdot ${CLSCLS[i]}"></span><span>${p.n}</span><span class="pturma">${p.t}</span></li>`).join('');
+      return `<div class="card fl"><h3>${COLORS[i]} ${name} <span class="chip">${players.length} jog.</span></h3><ul class="plist">${items}</ul></div>`;
     }).join('');
-    return `<div class="card" style="margin-bottom:.8rem">
-      <h3>🏫 ${turma} <span class="chip">${todos.length} alunos</span></h3>
-      <ul class="player-list">${items}</ul>
-    </div>`;
-  }).join('');
+  cV.innerHTML = '<div style="grid-column:1/-1"><h3 style="font-size:1.1rem;color:var(--volei);margin-bottom:.6rem">🏐 Times de Vôlei</h3></div>'
+    + Object.entries(VOLEI_TIMES).map(([name,players],i)=>{
+      const items = players.map((p,j)=>`<li><span class="pnum">${j+1}</span><span class="pdot ${CLSCLS[i]}"></span><span>${p.n}</span><span class="pturma">${p.t}</span></li>`).join('');
+      return `<div class="card vl"><h3>${COLORS[i]} ${name} <span class="chip">${players.length} jog.</span></h3><ul class="plist">${items}</ul></div>`;
+    }).join('');
 }
 
-// ── MATERIAIS ──
-function renderMateriais() {
-  const items = [
-    { icon:'⚽', name:'Bola de Futsal oficial', qty:'2 bolas', note:'1 em jogo + 1 reserva', cat:'Futsal' },
-    { icon:'🏐', name:'Bola de Vôlei oficial', qty:'2 bolas', note:'1 em jogo + 1 reserva', cat:'Vôlei' },
-    { icon:'🥅', name:'Traves/Goleiras de Futsal', qty:'2 goleiras', note:'Com redes em bom estado', cat:'Futsal' },
-    { icon:'🕸️', name:'Rede de Vôlei + Antenas', qty:'1 rede', note:'Verificar altura regulamentar (2,43m masc / 2,24m fem)', cat:'Vôlei' },
-    { icon:'🟡', name:'Cones de demarcação', qty:'20 cones', note:'Para limitar quadra e demarcar banco dos times', cat:'Geral' },
-    { icon:'📋', name:'Tabela/Chave impressa', qty:'3 cópias', note:'Uma por mesa de controle, uma no placar', cat:'Organização' },
-    { icon:'⏱️', name:'Cronômetro / Timer', qty:'2 unidades', note:'Um para cada quadra, celular serve', cat:'Organização' },
-    { icon:'📢', name:'Apito para árbitros', qty:'2 apitos', note:'1 por quadra', cat:'Organização' },
-    { icon:'🏅', name:'Medalhas / Troféu', qty:'1 troféu + 6 medalhas por esporte', note:'Campeão + vice de cada esporte', cat:'Premiação' },
-    { icon:'💧', name:'Água / Bebedouro', qty:'2 galões de 20L', note:'Ou garantir acesso ao bebedouro da escola', cat:'Estrutura' },
-    { icon:'🩹', name:'Kit de primeiros socorros', qty:'1 kit completo', note:'Gaze, esparadrapo, álcool, soro fisiológico', cat:'Segurança' },
-    { icon:'🪑', name:'Cadeiras/Bancos reserva', qty:'12 cadeiras', note:'Para times aguardarem fora da quadra', cat:'Estrutura' },
-    { icon:'🎙️', name:'Microfone/Caixa de som', qty:'1 kit', note:'Para comunicados, narração e encerramento', cat:'Estrutura' },
-    { icon:'💡', name:'Iluminação da quadra', qty:'—', note:'Verificar se as lâmpadas estão funcionando', cat:'Estrutura' },
-    { icon:'📓', name:'Súmula de jogo impressa', qty:'10 folhas', note:'Para registrar gols, sets e pontos', cat:'Organização' },
-    { icon:'🖊️', name:'Canetas / Pranchetas', qty:'4 canetas + 2 pranchetas', note:'Para árbitros e mesários', cat:'Organização' },
-    { icon:'🎨', name:'Coletes coloridos identificação', qty:'12 coletes (2 cores)', note:'Para diferenciar times nos jogos', cat:'Geral' },
-    { icon:'🗑️', name:'Lixeiras extras na quadra', qty:'4 lixeiras', note:'Garrafas, embalagens', cat:'Estrutura' },
-  ];
-
-  const cats = [...new Set(items.map(i => i.cat))];
-  const el = document.getElementById('materials-list');
-  el.innerHTML = cats.map(cat => {
-    const group = items.filter(i => i.cat === cat);
-    return `<div class="card" style="margin-bottom:.8rem">
-      <h3>${cat}</h3>
-      ${group.map((it, idx) => `
-        <div class="material-item">
-          <div class="material-icon">${it.icon}</div>
-          <div class="material-info">
-            <div class="material-name">${it.name}</div>
-            <div class="material-qty">${it.qty}</div>
-            <div class="material-note">${it.note}</div>
-          </div>
-          <div class="check-box" onclick="this.classList.toggle('done')" title="Marcar como providenciado"></div>
-        </div>`).join('')}
-    </div>`;
-  }).join('');
+// ─── SORTEIO RENDER ─────────────────────────────────────
+function sortF(){
+  ordF = shuffle(['A','B','C','D']);
+  renderDrawF();
+  renderBktF();
+  renderSched();
 }
-
-// ── REGRAS ──
-function renderRegras() {
-  const futsal = [
-    'Cada time pode ter até 7 jogadores no banco, com 5 em quadra (1 goleiro + 4 linha).',
-    'Substituições: ilimitadas, volante (pode sair e entrar a qualquer momento).',
-    'Duração: 2 tempos de 8 minutos corridos com intervalo de 3 min.',
-    'Em caso de empate na fase eliminatória: 2 pênaltis alternados. Se persistir, morte súbita (golden goal).',
-    'Faltas: a partir da 5ª falta acumulada no tempo, tiro livre direto sem barreira a partir do ponto de penalidade.',
-    'É proibido tackle por trás ou disputas com risco de lesão. Cartão amarelo = 2 min fora. Cartão vermelho = eliminação do jogo.',
-    'O goleiro só pode tocar com as mãos dentro da área. Posse máxima de 4 seg com a bola parada.',
-    'Lateral e tiro de canto realizados com os pés.',
-  ];
-  const volei = [
-    'Cada time pode ter até 8 jogadores; 6 em quadra.',
-    'Formato: melhor de 3 sets. Sets regulares: 25 pontos (diferença mínima de 2). 3º set: 15 pontos.',
-    'Máximo de 3 toques por lado; o bloqueio não conta como toque.',
-    'O líbero usa colete diferente e só pode jogar na linha de defesa (não pode bloquear nem atacar acima da rede).',
-    'Rotação obrigatória a cada ponto ganho no saque.',
-    'Toque na rede é falta exceto se a bola ainda for jogável pelo adversário.',
-    'Saque: o jogador tem 8 segundos após o árbitro apitar para executar.',
-    'Timeout: 1 técnico por set. O árbitro pode conceder tempo técnico aos 8 e 16 pontos do set.',
-  ];
-  const geral = [
-    'Participantes devem chegar 15 min antes do primeiro jogo para confirmação de presença.',
-    'Cada time deve ter pelo menos 5 jogadores para o jogo começar. Ausência gera W.O. (vitória ao adversário).',
-    'Uniformes: camisa da turma, shorts e tênis ou chuteira de salão. É proibido jogar de pé descalço.',
-    'Condutas antidesportivas (agressão verbal ou física) resultam em expulsão do evento.',
-    'Os árbitros são soberanos. Decisões podem ser contestadas apenas pelo capitão do time, com respeito.',
-    'Intervalo entre jogos: 10 min. Times devem estar prontos na quadra ao apitar do árbitro.',
-    'Resultado final registrado em súmula assinada pelos dois capitães e pelo árbitro.',
-    'Premiação ao final do último jogo: campeão e vice de cada modalidade recebem medalhas/troféu.',
-  ];
-
-  function makeRules(arr) {
-    return arr.map((r, i) => `<div class="rule-item"><span class="rule-num">${String(i+1).padStart(2,'0')}</span><span>${r}</span></div>`).join('');
-  }
-  document.getElementById('rules-futsal').innerHTML = makeRules(futsal);
-  document.getElementById('rules-volei').innerHTML = makeRules(volei);
-  document.getElementById('rules-geral').innerHTML = makeRules(geral);
+function sortV(){
+  ordV = shuffle(['1','2','3','4']);
+  renderDrawV();
+  renderBktV();
+  renderSched();
 }
-
-// ── TIMELINE ──
-function renderTimeline() {
-  const events = [
-    { time: '19h00', label: 'Abertura e Boas-vindas', color: 'var(--gold)' },
-    { time: '19h00', label: 'Quartas Futsal + Vôlei (paralelo)', color: 'var(--futsal)' },
-    { time: '20h00', label: 'Intervalo / Água', color: 'var(--muted)' },
-    { time: '20h10', label: 'Semifinais Futsal + Vôlei', color: 'var(--futsal)' },
-    { time: '21h00', label: 'Final Futsal 🏆', color: 'var(--futsal)' },
-    { time: '21h30', label: 'Final Vôlei 🏆', color: 'var(--volei)' },
-    { time: '22h00', label: 'Premiação e Encerramento 🎉', color: 'var(--gold)' },
-    { time: '22h30', label: 'Fim do evento', color: 'var(--muted)' },
-  ];
-  document.getElementById('timeline').innerHTML = events.map(e => `
-    <div style="display:flex;gap:.8rem;align-items:center;padding:.5rem 0;position:relative">
-      <div style="position:absolute;left:calc(-1.5rem + .4rem);width:10px;height:10px;border-radius:50%;background:${e.color};border:2px solid var(--bg);margin-top:.15rem"></div>
-      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;color:${e.color};min-width:3.5rem">${e.time}</span>
-      <span style="font-size:.88rem">${e.label}</span>
+function renderDrawF(){
+  const el=document.getElementById('draw-f');
+  el.innerHTML=ordF.map((k,i)=>`
+    <div class="tcard fon">
+      <span class="tseed">Seed ${i+1}</span>
+      <span class="tname">${COLORS[['A','B','C','D'].indexOf(k)]} Time ${k}</span>
+      <span class="chip">${FUTSAL_TIMES['Time '+k].length}j</span>
+    </div>`).join('');
+}
+function renderDrawV(){
+  const el=document.getElementById('draw-v');
+  el.innerHTML=ordV.map((k,i)=>`
+    <div class="tcard von">
+      <span class="tseed">Seed ${i+1}</span>
+      <span class="tname">${COLORS[['1','2','3','4'].indexOf(k)]} Time ${k}</span>
+      <span class="chip">${VOLEI_TIMES['Time '+k].length}j</span>
     </div>`).join('');
 }
 
-// ── INIT ──
-renderInscritos();
-renderMateriais();
+// ─── BRACKET ────────────────────────────────────────────
+function mkSlot(label, t1, t2, tbd1, tbd2, clr){
+  const c = clr||'var(--futsal)';
+  const team=(name,istbd)=>`<div class="mteam${istbd?' tbd':''}">${name}<span class="sbox">–</span></div>`;
+  return `<div class="mslot">
+    <div class="mtime" style="color:${c}">${label}</div>
+    ${team(t1,tbd1)}${team(t2,tbd2)}
+  </div>`;
+}
+function renderBktF(){
+  const [s1,s2,s3,s4]=ordF;
+  const F=k=>COLORS[['A','B','C','D'].indexOf(k)]+' Time '+k;
+  document.getElementById('bkt-f').innerHTML=`
+    <div class="rnd">
+      <div class="rlabel">Semifinais</div>
+      <div style="margin-top:1.4rem">${mkSlot('Semi 1 — 19h05','⚽ '+F(s1),'⚽ '+F(s2),false,false)}</div>
+      <div style="margin-top:1rem">${mkSlot('Semi 2 — 20h00','⚽ '+F(s3),'⚽ '+F(s4),false,false)}</div>
+    </div>
+    <div class="arr">›</div>
+    <div class="rnd">
+      <div class="rlabel">🏆 Grande Final</div>
+      <div style="margin-top:2.2rem">
+        <div class="mslot" style="border-color:var(--gold)">
+          <div class="mtime" style="color:var(--gold)">Final ⚽ — 21h10</div>
+          <div class="mteam tbd" style="color:var(--gold)">Vencedor Semi 1 <span class="sbox">–</span></div>
+          <div class="mteam tbd" style="color:var(--gold)">Vencedor Semi 2 <span class="sbox">–</span></div>
+        </div>
+      </div>
+    </div>`;
+}
+function renderBktV(){
+  const [s1,s2,s3,s4]=ordV;
+  const V=k=>COLORS[['1','2','3','4'].indexOf(k)]+' Time '+k;
+  document.getElementById('bkt-v').innerHTML=`
+    <div class="rnd">
+      <div class="rlabel">Semifinais</div>
+      <div style="margin-top:1.4rem">${mkSlot('Semi 1 — 19h30','🏐 '+V(s1),'🏐 '+V(s2),false,false,'var(--volei)')}</div>
+      <div style="margin-top:1rem">${mkSlot('Semi 2 — 20h25','🏐 '+V(s3),'🏐 '+V(s4),false,false,'var(--volei)')}</div>
+    </div>
+    <div class="arr" style="padding-top:2.2rem">›</div>
+    <div class="rnd">
+      <div class="rlabel">🏆 Grande Final</div>
+      <div style="margin-top:2.2rem">
+        <div class="mslot" style="border-color:var(--gold)">
+          <div class="mtime" style="color:var(--gold)">Final 🏐 — 21h35</div>
+          <div class="mteam tbd" style="color:var(--gold)">Vencedor Semi 1 <span class="sbox">–</span></div>
+          <div class="mteam tbd" style="color:var(--gold)">Vencedor Semi 2 <span class="sbox">–</span></div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ─── CRONOGRAMA ─────────────────────────────────────────
+function renderSched(){
+  const F=k=>COLORS[['A','B','C','D'].indexOf(k)]+' Time '+k;
+  const V=k=>COLORS[['1','2','3','4'].indexOf(k)]+' Time '+k;
+  const [fA,fB,fC,fD]=ordF;
+  const [vA,vB,vC,vD]=ordV;
+  const rows=[
+    {h:'19h00',esp:'—',     conf:'Abertura e apresentação dos times',fase:'Abertura',dur:'5 min',cls:''},
+    {h:'19h05',esp:'futsal',conf:`${F(fA)} × ${F(fB)}`,fase:'Semifinal',dur:'20 min',cls:'bdf'},
+    {h:'19h30',esp:'volei', conf:`${V(vA)} × ${V(vB)}`,fase:'Semifinal',dur:'25 min',cls:'bdv'},
+    {h:'20h00',esp:'futsal',conf:`${F(fC)} × ${F(fD)}`,fase:'Semifinal',dur:'20 min',cls:'bdf'},
+    {h:'20h25',esp:'volei', conf:`${V(vC)} × ${V(vD)}`,fase:'Semifinal',dur:'25 min',cls:'bdv'},
+    {h:'20h55',esp:'—',     conf:'Intervalo — Água, descanso, aquecimento finalistas',fase:'Pausa',dur:'15 min',cls:''},
+    {h:'21h10',esp:'futsal',conf:'⚽ GRANDE FINAL — Futsal',fase:'Final',dur:'20 min',cls:'bdg'},
+    {h:'21h35',esp:'volei', conf:'🏐 GRANDE FINAL — Vôlei',fase:'Final',dur:'25 min',cls:'bdg'},
+    {h:'22h05',esp:'—',     conf:'🎉 Premiação, fotos e encerramento',fase:'Premiação',dur:'25 min',cls:''},
+    {h:'22h30',esp:'—',     conf:'Fim do evento',fase:'—',dur:'—',cls:''},
+  ];
+  const esporteBadge=esp=>{
+    if(esp==='futsal') return '<span class="bdf">Futsal</span>';
+    if(esp==='volei')  return '<span class="bdv">Vôlei</span>';
+    return '<span class="chip">—</span>';
+  };
+  const faseBadge=f=>{
+    if(f==='Final') return '<span class="bdg">FINAL</span>';
+    return `<span class="chip">${f}</span>`;
+  };
+  document.getElementById('sched').innerHTML=rows.map(r=>`<tr>
+    <td><strong>${r.h}</strong></td>
+    <td>${esporteBadge(r.esp)}</td>
+    <td>${r.conf}</td>
+    <td>${faseBadge(r.fase)}</td>
+    <td style="color:var(--muted)">${r.dur}</td>
+  </tr>`).join('');
+}
+
+// ─── TIMELINE ───────────────────────────────────────────
+function renderTL(){
+  const evts=[
+    {t:'19h00',l:'Abertura',c:'var(--gold)'},
+    {t:'19h05',l:'⚽ Semi 1 Futsal (20 min)',c:'var(--futsal)'},
+    {t:'19h30',l:'🏐 Semi 1 Vôlei (25 min)',c:'var(--volei)'},
+    {t:'20h00',l:'⚽ Semi 2 Futsal (20 min)',c:'var(--futsal)'},
+    {t:'20h25',l:'🏐 Semi 2 Vôlei (25 min)',c:'var(--volei)'},
+    {t:'20h55',l:'Intervalo (15 min)',c:'var(--muted)'},
+    {t:'21h10',l:'⚽ FINAL Futsal 🏆 (20 min)',c:'var(--futsal)'},
+    {t:'21h35',l:'🏐 FINAL Vôlei 🏆 (25 min)',c:'var(--volei)'},
+    {t:'22h05',l:'🎉 Premiação',c:'var(--gold)'},
+    {t:'22h30',l:'Fim',c:'var(--muted)'},
+  ];
+  document.getElementById('tl').innerHTML=evts.map(e=>`
+    <div style="display:flex;gap:.7rem;align-items:center;padding:.45rem 0;position:relative">
+      <div style="position:absolute;left:calc(-1.4rem + .35rem);width:9px;height:9px;border-radius:50%;background:${e.c};border:2px solid var(--bg)"></div>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;color:${e.c};min-width:3.4rem">${e.t}</span>
+      <span style="font-size:.85rem">${e.l}</span>
+    </div>`).join('');
+}
+
+// ─── MATERIAIS ──────────────────────────────────────────
+function renderMats(){
+  const cats={
+    'Esporte':[
+      {ico:'⚽',n:'Bola de Futsal oficial',q:'2 bolas',note:'1 em jogo + 1 reserva'},
+      {ico:'🏐',n:'Bola de Vôlei oficial',q:'2 bolas',note:'1 em jogo + 1 reserva'},
+      {ico:'🥅',n:'Traves/Goleiras de Futsal',q:'2 goleiras',note:'Com redes intactas'},
+      {ico:'🕸️',n:'Rede de Vôlei + Antenas',q:'1 rede',note:'Verificar altura: 2,43 m masc / 2,24 m misto'},
+      {ico:'🎨',n:'Coletes coloridos (4 cores)',q:'12 coletes',note:'3 por cor para diferenciar os times'},
+    ],
+    'Organização':[
+      {ico:'📋',n:'Chave/tabela impressa',q:'4 cópias',note:'1 por mesa, 1 no painel visível'},
+      {ico:'⏱️',n:'Cronômetro/Timer',q:'1 unidade',note:'Celular com timer visível serve'},
+      {ico:'📢',n:'Apito para árbitro',q:'1 apito',note:'Árbitro único já que não há paralelo'},
+      {ico:'📓',n:'Súmula de jogo impressa',q:'6 folhas',note:'Uma por jogo (3 futsal + 3 vôlei)'},
+      {ico:'🖊️',n:'Canetas + Prancheta',q:'2 canetas + 1 prancheta',note:'Para árbitro e mesário'},
+      {ico:'🟡',n:'Cones de demarcação',q:'10 cones',note:'Para banco dos times e limites'},
+    ],
+    'Estrutura':[
+      {ico:'💧',n:'Água / Bebedouro',q:'2 galões 20 L',note:'Ou acesso garantido ao bebedouro'},
+      {ico:'🪑',n:'Cadeiras para bancada',q:'16 cadeiras',note:'Para times aguardando e juízes'},
+      {ico:'🎙️',n:'Caixa de som + Microfone',q:'1 kit',note:'Comunicados e encerramento'},
+      {ico:'💡',n:'Iluminação da quadra',q:'—',note:'Verificar todas as lâmpadas antes'},
+      {ico:'🗑️',n:'Lixeiras',q:'4 unidades',note:'Nas bordas da quadra'},
+    ],
+    'Premiação':[
+      {ico:'🏆',n:'Troféu Campeão — Futsal',q:'1 troféu',note:''},
+      {ico:'🏆',n:'Troféu Campeão — Vôlei',q:'1 troféu',note:''},
+      {ico:'🥇',n:'Medalhas — Futsal (campeão + vice)',q:'14 medalhas',note:'7 jog. campeão + 7 vice'},
+      {ico:'🥇',n:'Medalhas — Vôlei (campeão + vice)',q:'17 medalhas',note:'9 jog. campeão + 8 vice'},
+    ],
+    'Segurança':[
+      {ico:'🩹',n:'Kit de primeiros socorros',q:'1 kit',note:'Gaze, esparadrapo, álcool, soro'},
+      {ico:'🧊',n:'Gelo/Bolsa de frio',q:'2 bolsas',note:'Para torções e pancadas'},
+    ],
+  };
+  document.getElementById('mats').innerHTML=Object.entries(cats).map(([cat,items])=>`
+    <div class="card" style="margin-bottom:.8rem">
+      <h3>${cat}</h3>
+      ${items.map(it=>`
+        <div class="mitem">
+          <div class="mico">${it.ico}</div>
+          <div class="minfo">
+            <div class="mname">${it.n}</div>
+            <div class="mqty">${it.q}</div>
+            ${it.note?`<div class="mnote">${it.note}</div>`:''}
+          </div>
+          <div class="chk" onclick="this.classList.toggle('done')" title="Marcar como providenciado"></div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+// ─── REGRAS ─────────────────────────────────────────────
+function renderRegras(){
+  const futsal=[
+    '5 jogadores em quadra (1 goleiro + 4). Substituições ilimitadas, volantes.',
+    'Duração: 2 tempos de 8 min corridos com 3 min de intervalo.',
+    'Empate na semifinal: 2 pênaltis alternados; se persistir, morte súbita (golden goal).',
+    'Faltas acumuladas: a partir da 5ª no tempo, tiro livre direto sem barreira.',
+    'Cartão amarelo = 2 min fora; cartão vermelho = expulso do jogo.',
+    'Goleiro não pode tocar a bola com a mão fora da área; posse máxima 4 seg parado.',
+    'Lateral e escanteio executados com os pés.',
+    'Empate na final: prorrogação de 5 min e, se persistir, pênaltis (3 alternados + morte súbita).',
+  ];
+  const volei=[
+    '6 jogadores em quadra. Pode ter líbero com colete diferente (defesa).',
+    'Melhor de 3 sets: 25 pts (diferença de 2); 3º set = 15 pts (diferença de 2).',
+    'Máximo de 3 toques por lado; o bloqueio não conta como toque.',
+    'Rotação obrigatória a cada ponto ganho no saque.',
+    'Toque na rede é falta (exceto se a bola ainda for jogável).',
+    'Saque: 8 segundos após o apito para executar.',
+    'Timeout: 1 por set por time.',
+    'Jogador expulso por conduta não pode ser substituído naquele set.',
+  ];
+  const geral=[
+    'Chegada: 15 min antes do primeiro jogo para confirmar presença e receber colete.',
+    'Time com menos de 5 jogadores no Futsal ou 4 no Vôlei → W.O. (derrota automática).',
+    'Uniformes: camiseta, shorts e tênis/chuteira de salão. É proibido jogar descalço.',
+    'Condutas antidesportivas (agressão verbal ou física) = expulsão imediata do evento.',
+    'Reclamações ao árbitro: apenas o capitão pode se aproximar, com respeito. Terceiros = punição.',
+    'Intervalo entre jogos: os times entram na quadra em até 3 min após o apito. Atraso → W.O.',
+    'Alunos novos no dia: distribuir 1 por time, priorizando o time com menos jogadores.',
+    'Súmula assinada pelos dois capitães e pelo árbitro ao final de cada jogo.',
+    'Premiação ao fim do último jogo: campeão e vice de cada modalidade recebem troféu/medalha.',
+  ];
+  const mk=(arr,clr)=>arr.map((r,i)=>`<div class="ritem"><span class="rnum" style="color:${clr}">${String(i+1).padStart(2,'0')}</span><span>${r}</span></div>`).join('');
+  document.getElementById('rf').innerHTML=mk(futsal,'var(--futsal)');
+  document.getElementById('rv').innerHTML=mk(volei,'var(--volei)');
+  document.getElementById('rg').innerHTML=mk(geral,'var(--gold)');
+}
+
+// ─── INIT ───────────────────────────────────────────────
+renderTimes();
+renderMats();
 renderRegras();
-renderTimeline();
-sortearFutsal();
-sortearVolei();
-renderBracketFutsal();
-renderBracketVolei();
-renderSchedule();
+renderTL();
+sortF();
+sortV();
 </script>
 </body>
 </html>
