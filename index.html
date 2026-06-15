@@ -125,7 +125,14 @@ h3{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text
 .tseed{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;color:var(--muted)}
 .tclr{width:12px;height:12px;border-radius:50%;flex-shrink:0}
 
-@media(max-width:600px){.bracket{min-width:480px}.mslot{width:155px}.g2{grid-template-columns:1fr}}
+/* VOTING */
+.vbtn{display:block;width:100%;margin-top:1rem;background:var(--futsal);border:none;border-radius:8px;color:#fff;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.05em;padding:.6rem 1rem;text-transform:uppercase;transition:all .15s}
+.vbtn:hover{filter:brightness(1.15)}
+.vbtn.voted{opacity:.6;cursor:default}
+.vbtnv{background:var(--volei);color:var(--bg)}
+.vbar-wrap{background:var(--border);border-radius:99px;height:6px;margin-top:.7rem;overflow:hidden}
+.vbar{height:100%;border-radius:99px;width:0%;transition:width .4s ease}
+.vcount{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;color:var(--muted);margin-top:.3rem;text-align:right}
 </style>
 </head>
 <body>
@@ -146,6 +153,7 @@ h3{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text
 
 <nav>
   <button class="tab on"  onclick="goTab('visao')">📊 Visão Geral</button>
+  <button class="tab"     onclick="goTab('votacao')">🗳️ Votação</button>
   <button class="tab"     onclick="goTab('times')">👕 Times</button>
   <button class="tab"     onclick="goTab('sorteio')">🎲 Sorteio</button>
   <button class="tab"     onclick="goTab('chave-f')">⚽ Chave Futsal</button>
@@ -197,6 +205,127 @@ h3{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text
       <div id="tl"></div>
     </div>
   </div>
+</div>
+
+<!-- VOTAÇÃO -->
+<div id="tab-votacao" class="sec">
+  <h2>🗳️ Como formar os times?</h2>
+  <p style="color:var(--muted);margin-bottom:1.2rem">Duas opções em discussão. Veja os prós e contras de cada uma e vote!</p>
+
+  <div class="g2" style="margin-bottom:1.4rem">
+
+    <!-- OPÇÃO A: TIMES MISTOS -->
+    <div class="card" style="border:2px solid var(--futsal);position:relative">
+      <div style="position:absolute;top:-1px;left:1.2rem;background:var(--futsal);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;padding:.15rem .7rem;border-radius:0 0 6px 6px;text-transform:uppercase">Opção A — Atual</div>
+      <h3 style="color:var(--futsal);margin-top:.8rem">🔀 Times Mistos</h3>
+      <p style="font-size:.85rem;margin-bottom:.9rem">Alunos de diferentes turmas no mesmo time, distribuídos de forma equilibrada.</p>
+
+      <div style="margin-bottom:.5rem">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;color:var(--win);text-transform:uppercase;margin-bottom:.35rem">✅ Vantagens</div>
+        <ul style="list-style:none;font-size:.83rem;display:flex;flex-direction:column;gap:.3rem">
+          <li style="display:flex;gap:.5rem"><span style="color:var(--win);flex-shrink:0">+</span>Times equilibrados — jogos mais disputados</li>
+          <li style="display:flex;gap:.5rem"><span style="color:var(--win);flex-shrink:0">+</span>Integração entre turmas — conhece gente nova</li>
+          <li style="display:flex;gap:.5rem"><span style="color:var(--win);flex-shrink:0">+</span>Resolve o problema de turmas com poucos inscritos</li>
+          <li style="display:flex;gap:.5rem"><span style="color:var(--win);flex-shrink:0">+</span>Reduz rivalidades entre turmas</li>
+        </ul>
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:.5rem;margin-top:.5rem">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;color:#f87171;text-transform:uppercase;margin-bottom:.35rem">❌ Desvantagens</div>
+        <ul style="list-style:none;font-size:.83rem;display:flex;flex-direction:column;gap:.3rem">
+          <li style="display:flex;gap:.5rem"><span style="color:#f87171;flex-shrink:0">−</span>Perde a identidade de "defender minha turma"</li>
+          <li style="display:flex;gap:.5rem"><span style="color:#f87171;flex-shrink:0">−</span>Difícil treinar junto antes do evento</li>
+          <li style="display:flex;gap:.5rem"><span style="color:#f87171;flex-shrink:0">−</span>Pode gerar resistência entre os mais competitivos</li>
+        </ul>
+      </div>
+
+      <button class="vbtn" id="btn-misto" onclick="votar('misto')">
+        <span id="ico-misto">🗳️</span> Votar nesta opção
+      </button>
+      <div class="vbar-wrap">
+        <div class="vbar" id="bar-misto" style="background:var(--futsal)"></div>
+      </div>
+      <div class="vcount" id="count-misto">0 votos</div>
+    </div>
+
+    <!-- OPÇÃO B: TIMES POR TURMA -->
+    <div class="card" style="border:2px solid var(--volei);position:relative">
+      <div style="position:absolute;top:-1px;left:1.2rem;background:var(--volei);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;padding:.15rem .7rem;border-radius:0 0 6px 6px;text-transform:uppercase">Opção B — Alternativa</div>
+      <h3 style="color:var(--volei);margin-top:.8rem">🏫 Times por Turma</h3>
+      <p style="font-size:.85rem;margin-bottom:.9rem">Cada turma monta seu próprio time. Turmas com poucos alunos se unem a outra turma pequena.</p>
+
+      <div style="margin-bottom:.5rem">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;color:var(--win);text-transform:uppercase;margin-bottom:.35rem">✅ Vantagens</div>
+        <ul style="list-style:none;font-size:.83rem;display:flex;flex-direction:column;gap:.3rem">
+          <li style="display:flex;gap:.5rem"><span style="color:var(--win);flex-shrink:0">+</span>Sentimento de representar a própria turma</li>
+          <li style="display:flex;gap:.5rem"><span style="color:var(--win);flex-shrink:0">+</span>Mais fácil de treinar — todo mundo já se conhece</li>
+          <li style="display:flex;gap:.5rem"><span style="color:var(--win);flex-shrink:0">+</span>Formato clássico de interclasse — galera entende rápido</li>
+          <li style="display:flex;gap:.5rem"><span style="color:var(--win);flex-shrink:0">+</span>Mais rivalidade saudável e torcida animada</li>
+        </ul>
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:.5rem;margin-top:.5rem">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;color:#f87171;text-transform:uppercase;margin-bottom:.35rem">❌ Desvantagens</div>
+        <ul style="list-style:none;font-size:.83rem;display:flex;flex-direction:column;gap:.3rem">
+          <li style="display:flex;gap:.5rem"><span style="color:#f87171;flex-shrink:0">−</span>Times desiguais — algumas turmas têm muito mais inscritos</li>
+          <li style="display:flex;gap:.5rem"><span style="color:#f87171;flex-shrink:0">−</span>Enfermagem e 3 Info têm pouquíssimos inscritos</li>
+          <li style="display:flex;gap:.5rem"><span style="color:#f87171;flex-shrink:0">−</span>Pode ser menos emocionante se um time for muito superior</li>
+        </ul>
+      </div>
+
+      <button class="vbtn vbtnv" id="btn-turma" onclick="votar('turma')">
+        <span id="ico-turma">🗳️</span> Votar nesta opção
+      </button>
+      <div class="vbar-wrap">
+        <div class="vbar" id="bar-turma" style="background:var(--volei)"></div>
+      </div>
+      <div class="vcount" id="count-turma">0 votos</div>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO Q1 -->
+  <div class="card" id="resultado-card" style="display:none;text-align:center;border-color:var(--gold)">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem">📊 Resultado parcial</div>
+    <div id="resultado-texto" style="font-size:.9rem"></div>
+    <button onclick="resetarVotos()" style="margin-top:.8rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:.3rem .8rem;cursor:pointer;font-size:.78rem">🔄 Zerar votos</button>
+  </div>
+
+  <hr style="border:none;border-top:1px solid var(--border);margin:1.6rem 0">
+
+  <!-- PERGUNTA 2: IR ASSISTIR -->
+  <h2 style="margin-bottom:.3rem">🏟️ Você iria assistir mesmo sem jogar?</h2>
+  <p style="color:var(--muted);margin-bottom:1.2rem">O evento será em outra unidade. Quem não está inscrito, toparia ir torcer?</p>
+
+  <div class="g2" style="margin-bottom:1.4rem">
+
+    <div class="card" style="border:2px solid var(--win);text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:.4rem">👍</div>
+      <h3 style="color:var(--win)">Sim, eu iria!</h3>
+      <p style="font-size:.83rem;color:var(--muted);margin-bottom:.8rem">Mesmo em outra unidade, vale ir torcer e curtir.</p>
+      <button class="vbtn" id="btn-sim" style="background:var(--win);color:var(--bg)" onclick="votarQ2('sim')">🗳️ Votar</button>
+      <div class="vbar-wrap" style="margin-top:.7rem"><div class="vbar" id="bar-sim" style="background:var(--win)"></div></div>
+      <div class="vcount" id="count-sim">0 votos</div>
+    </div>
+
+    <div class="card" style="border:2px solid #f87171;text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:.4rem">🤷</div>
+      <h3 style="color:#f87171">Provavelmente não</h3>
+      <p style="font-size:.83rem;color:var(--muted);margin-bottom:.8rem">Deslocamento em outra unidade não compensa só para assistir.</p>
+      <button class="vbtn" id="btn-nao" style="background:#f87171;color:#fff" onclick="votarQ2('nao')">🗳️ Votar</button>
+      <div class="vbar-wrap" style="margin-top:.7rem"><div class="vbar" id="bar-nao" style="background:#f87171"></div></div>
+      <div class="vcount" id="count-nao">0 votos</div>
+    </div>
+
+  </div>
+
+  <div class="card" id="resultado-card2" style="display:none;text-align:center;border-color:var(--gold)">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem">📊 Resultado parcial</div>
+    <div id="resultado-texto2" style="font-size:.9rem"></div>
+    <button onclick="resetarVotosQ2()" style="margin-top:.8rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:.3rem .8rem;cursor:pointer;font-size:.78rem">🔄 Zerar votos</button>
+  </div>
+
+  <div class="alert" style="margin-top:.8rem">💡 <span>Votação para discussão em sala. A decisão final fica com a coordenação e a comissão organizadora.</span></div>
 </div>
 
 <!-- TIMES -->
@@ -364,7 +493,94 @@ let ordF = ['A','B','C','D'];
 let ordV = ['1','2','3','4'];
 
 // ─── TABS ───────────────────────────────────────────────
-const TAB_IDS = ['visao','times','sorteio','chave-f','chave-v','cronograma','materiais','regras'];
+const TAB_IDS = ['visao','votacao','times','sorteio','chave-f','chave-v','cronograma','materiais','regras'];
+
+// ─── VOTAÇÃO ────────────────────────────────────────────
+let votos = {misto: 0, turma: 0};
+let votou = false;
+
+function votar(opcao) {
+  if(votou) return;
+  votou = true;
+  votos[opcao]++;
+  atualizarVotos();
+  const btn = document.getElementById('btn-'+opcao);
+  btn.innerHTML = '✅ Voto registrado!';
+  btn.classList.add('voted');
+  document.getElementById('btn-'+(opcao==='misto'?'turma':'misto')).classList.add('voted');
+}
+
+function atualizarVotos() {
+  const total = votos.misto + votos.turma;
+  const pM = total ? Math.round(votos.misto/total*100) : 0;
+  const pT = total ? Math.round(votos.turma/total*100) : 0;
+  document.getElementById('bar-misto').style.width = pM+'%';
+  document.getElementById('bar-turma').style.width = pT+'%';
+  document.getElementById('count-misto').textContent = votos.misto+' voto'+(votos.misto!==1?'s':'')+' ('+pM+'%)';
+  document.getElementById('count-turma').textContent = votos.turma+' voto'+(votos.turma!==1?'s':'')+' ('+pT+'%)';
+  const card = document.getElementById('resultado-card');
+  const txt = document.getElementById('resultado-texto');
+  if(total > 0) {
+    card.style.display = 'block';
+    if(votos.misto > votos.turma) txt.innerHTML = '🔀 <strong>Times Mistos</strong> está na frente com <strong>'+pM+'%</strong> dos votos.';
+    else if(votos.turma > votos.misto) txt.innerHTML = '🏫 <strong>Times por Turma</strong> está na frente com <strong>'+pT+'%</strong> dos votos.';
+    else txt.innerHTML = '🤝 <strong>Empate!</strong> Cada opção com '+votos.misto+' voto'+(votos.misto!==1?'s':'')+'.';
+  }
+}
+
+function resetarVotos() {
+  votos = {misto:0, turma:0};
+  votou = false;
+  atualizarVotos();
+  document.getElementById('resultado-card').style.display='none';
+  document.getElementById('btn-misto').innerHTML='<span id="ico-misto">🗳️</span> Votar nesta opção';
+  document.getElementById('btn-turma').innerHTML='<span id="ico-turma">🗳️</span> Votar nesta opção';
+  document.getElementById('btn-misto').classList.remove('voted');
+  document.getElementById('btn-turma').classList.remove('voted');
+}
+
+// ─── VOTAÇÃO Q2 ─────────────────────────────────────────
+let votosQ2 = {sim:0, nao:0};
+let votouQ2 = false;
+
+function votarQ2(opcao) {
+  if(votouQ2) return;
+  votouQ2 = true;
+  votosQ2[opcao]++;
+  atualizarVotosQ2();
+  document.getElementById('btn-'+opcao).innerHTML='✅ Voto registrado!';
+  document.getElementById('btn-'+opcao).classList.add('voted');
+  document.getElementById('btn-'+(opcao==='sim'?'nao':'sim')).classList.add('voted');
+}
+
+function atualizarVotosQ2() {
+  const total = votosQ2.sim + votosQ2.nao;
+  const pS = total ? Math.round(votosQ2.sim/total*100) : 0;
+  const pN = total ? Math.round(votosQ2.nao/total*100) : 0;
+  document.getElementById('bar-sim').style.width = pS+'%';
+  document.getElementById('bar-nao').style.width = pN+'%';
+  document.getElementById('count-sim').textContent = votosQ2.sim+' voto'+(votosQ2.sim!==1?'s':'')+' ('+pS+'%)';
+  document.getElementById('count-nao').textContent = votosQ2.nao+' voto'+(votosQ2.nao!==1?'s':'')+' ('+pN+'%)';
+  const card = document.getElementById('resultado-card2');
+  const txt = document.getElementById('resultado-texto2');
+  if(total > 0) {
+    card.style.display = 'block';
+    if(votosQ2.sim > votosQ2.nao) txt.innerHTML = '👍 <strong>'+pS+'%</strong> iria assistir mesmo sem jogar — boa torcida garantida!';
+    else if(votosQ2.nao > votosQ2.sim) txt.innerHTML = '🤷 <strong>'+pN+'%</strong> provavelmente não iria — o deslocamento pesa.';
+    else txt.innerHTML = '🤝 <strong>Empate!</strong> Metade toparia ir, metade não.';
+  }
+}
+
+function resetarVotosQ2() {
+  votosQ2 = {sim:0, nao:0};
+  votouQ2 = false;
+  atualizarVotosQ2();
+  document.getElementById('resultado-card2').style.display='none';
+  document.getElementById('btn-sim').innerHTML='🗳️ Votar';
+  document.getElementById('btn-nao').innerHTML='🗳️ Votar';
+  document.getElementById('btn-sim').classList.remove('voted');
+  document.getElementById('btn-nao').classList.remove('voted');
+}
 function goTab(id){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('on');t.classList.remove('onv')});
@@ -468,14 +684,14 @@ function renderBktV(){
     <div class="rnd">
       <div class="rlabel">Semifinais</div>
       <div style="margin-top:1.4rem">${mkSlot('Semi 1 — 20h35','🏐 '+V(s1),'🏐 '+V(s2),false,false,'var(--volei)')}</div>
-      <div style="margin-top:1rem">${mkSlot('Semi 2 — 21h05','🏐 '+V(s3),'🏐 '+V(s4),false,false,'var(--volei)')}</div>
+      <div style="margin-top:1rem">${mkSlot('Semi 2 — 21h00','🏐 '+V(s3),'🏐 '+V(s4),false,false,'var(--volei)')}</div>
     </div>
     <div class="arr" style="padding-top:2.2rem">›</div>
     <div class="rnd">
       <div class="rlabel">🏆 Grande Final</div>
       <div style="margin-top:2.2rem">
         <div class="mslot" style="border-color:var(--gold)">
-          <div class="mtime" style="color:var(--gold)">Final 🏐 — 21h35</div>
+          <div class="mtime" style="color:var(--gold)">Final 🏐 — 21h25</div>
           <div class="mteam tbd" style="color:var(--gold)">Vencedor Semi 1 <span class="sbox">–</span></div>
           <div class="mteam tbd" style="color:var(--gold)">Vencedor Semi 2 <span class="sbox">–</span></div>
         </div>
@@ -495,10 +711,10 @@ function renderSched(){
     {h:'19h30',esp:'futsal',conf:`${F(fC)} × ${F(fD)}`,fase:'Semifinal',dur:'20 min'},
     {h:'20h00',esp:'futsal',conf:'⚽ GRANDE FINAL — Futsal',fase:'Final',dur:'20 min'},
     {h:'20h25',esp:'—',     conf:'🔧 Intervalo — Retirar goleiras, montar rede de vôlei',fase:'Montagem',dur:'10 min'},
-    {h:'20h35',esp:'volei', conf:`${V(vA)} × ${V(vB)}`,fase:'Semifinal',dur:'25 min'},
-    {h:'21h05',esp:'volei', conf:`${V(vC)} × ${V(vD)}`,fase:'Semifinal',dur:'25 min'},
-    {h:'21h35',esp:'volei', conf:'🏐 GRANDE FINAL — Vôlei',fase:'Final',dur:'25 min'},
-    {h:'22h05',esp:'—',     conf:'🎉 Premiação, fotos e encerramento',fase:'Premiação',dur:'25 min'},
+    {h:'20h35',esp:'volei', conf:`${V(vA)} × ${V(vB)}`,fase:'Semifinal',dur:'20 min'},
+    {h:'21h00',esp:'volei', conf:`${V(vC)} × ${V(vD)}`,fase:'Semifinal',dur:'20 min'},
+    {h:'21h25',esp:'volei', conf:'🏐 GRANDE FINAL — Vôlei',fase:'Final',dur:'20 min'},
+    {h:'21h50',esp:'—',     conf:'🎉 Premiação, fotos e encerramento',fase:'Premiação',dur:'40 min'},
     {h:'22h30',esp:'—',     conf:'Fim do evento',fase:'—',dur:'—'},
   ];
   const esporteBadge=esp=>{
@@ -527,10 +743,10 @@ function renderTL(){
     {t:'19h30',l:'⚽ Semi 2 Futsal (20 min)',c:'var(--futsal)'},
     {t:'20h00',l:'⚽ FINAL Futsal 🏆 (20 min)',c:'var(--futsal)'},
     {t:'20h25',l:'🔧 Intervalo — montar rede de vôlei (10 min)',c:'var(--muted)'},
-    {t:'20h35',l:'🏐 Semi 1 Vôlei (25 min)',c:'var(--volei)'},
-    {t:'21h05',l:'🏐 Semi 2 Vôlei (25 min)',c:'var(--volei)'},
-    {t:'21h35',l:'🏐 FINAL Vôlei 🏆 (25 min)',c:'var(--volei)'},
-    {t:'22h05',l:'🎉 Premiação',c:'var(--gold)'},
+    {t:'20h35',l:'🏐 Semi 1 Vôlei — set único 15 pts (20 min)',c:'var(--volei)'},
+    {t:'21h00',l:'🏐 Semi 2 Vôlei — set único 15 pts (20 min)',c:'var(--volei)'},
+    {t:'21h25',l:'🏐 FINAL Vôlei 🏆 (20 min)',c:'var(--volei)'},
+    {t:'21h50',l:'🎉 Premiação',c:'var(--gold)'},
     {t:'22h30',l:'Fim',c:'var(--muted)'},
   ];
   document.getElementById('tl').innerHTML=evts.map(e=>`
@@ -549,7 +765,6 @@ function renderMats(){
       {ico:'🏐',n:'Bola de Vôlei oficial',q:'2 bolas',note:'1 em jogo + 1 reserva'},
       {ico:'🥅',n:'Traves/Goleiras de Futsal',q:'2 goleiras',note:'Com redes intactas'},
       {ico:'🕸️',n:'Rede de Vôlei + Antenas',q:'1 rede',note:'Verificar altura: 2,43 m masc / 2,24 m misto'},
-      {ico:'🎨',n:'Coletes coloridos (4 cores)',q:'12 coletes',note:'3 por cor para diferenciar os times'},
     ],
     'Organização':[
       {ico:'📋',n:'Chave/tabela impressa',q:'4 cópias',note:'1 por mesa, 1 no painel visível'},
@@ -606,17 +821,17 @@ function renderRegras(){
     'Empate na final: prorrogação de 5 min e, se persistir, pênaltis (3 alternados + morte súbita).',
   ];
   const volei=[
-    '6 jogadores em quadra. Pode ter líbero com colete diferente (defesa).',
-    'Melhor de 3 sets: 25 pts (diferença de 2); 3º set = 15 pts (diferença de 2).',
+    '6 jogadores em quadra. Substituições ilimitadas durante o jogo.',
+    'Formato: set único de 15 pontos. Diferença mínima de 2 pontos para vencer.',
+    'Em caso de 14 a 14, joga-se até abrir 2 pontos de diferença (sem limite).',
     'Máximo de 3 toques por lado; o bloqueio não conta como toque.',
     'Rotação obrigatória a cada ponto ganho no saque.',
-    'Toque na rede é falta (exceto se a bola ainda for jogável).',
+    'Toque na rede é falta (exceto se a bola ainda for jogável pelo adversário).',
     'Saque: 8 segundos após o apito para executar.',
-    'Timeout: 1 por set por time.',
-    'Jogador expulso por conduta não pode ser substituído naquele set.',
+    'Timeout: 1 por jogo por time, solicitado apenas pelo capitão.',
   ];
   const geral=[
-    'Chegada: 15 min antes do primeiro jogo para confirmar presença e receber colete.',
+    'Chegada: 15 min antes do primeiro jogo para confirmação de presença.',
     'Time com menos de 5 jogadores no Futsal ou 4 no Vôlei → W.O. (derrota automática).',
     'Uniformes: camiseta, shorts e tênis/chuteira de salão. É proibido jogar descalço.',
     'Condutas antidesportivas (agressão verbal ou física) = expulsão imediata do evento.',
