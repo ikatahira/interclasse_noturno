@@ -134,7 +134,7 @@ h3{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text
   <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem">Etec Professor Mário Antônio Verza</p>
   <div class="badge">⚽ Interclasse 2026 — Noturno 🏐</div>
   <h1>Futsal <span>&</span> Vôlei</h1>
-  <p class="hsub">4 times mistos · Sem paralelo · 19h – 22h30</p>
+  <p class="hsub">4 times mistos · Futsal depois Vôlei · 19h – 22h30</p>
   <div class="hmeta">
     <div class="mpill">📅 Dia único</div>
     <div class="mpill">🕖 19h00 – 22h30</div>
@@ -191,7 +191,7 @@ h3{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text
   </div>
 
   <div class="card">
-    <h3>🕐 Linha do Tempo — Sequência Intercalada F › V › F › V › F › V</h3>
+    <h3>🕐 Linha do Tempo — ⚽ Bloco Futsal › 🔧 Montagem › 🏐 Bloco Vôlei</h3>
     <div style="position:relative;padding-left:1.4rem;margin-top:.4rem">
       <div style="position:absolute;left:.4rem;top:0;bottom:0;width:2px;background:var(--border)"></div>
       <div id="tl"></div>
@@ -244,7 +244,7 @@ h3{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text
 <!-- CRONOGRAMA -->
 <div id="tab-cronograma" class="sec">
   <h2>🕐 Cronograma</h2>
-  <div class="alert">📌 Sequência intercalada: Futsal → Vôlei → Futsal → Vôlei → Futsal → Vôlei. Uma quadra só.</div>
+  <div class="alert">📌 Bloco completo de Futsal (19h05–20h20), intervalo para montar a rede (10 min), depois bloco completo de Vôlei (20h35–22h00). Uma quadra, zero retrabalho.</div>
   <div class="card" style="overflow-x:auto">
     <table class="stable">
       <thead>
@@ -447,14 +447,14 @@ function renderBktF(){
     <div class="rnd">
       <div class="rlabel">Semifinais</div>
       <div style="margin-top:1.4rem">${mkSlot('Semi 1 — 19h05','⚽ '+F(s1),'⚽ '+F(s2),false,false)}</div>
-      <div style="margin-top:1rem">${mkSlot('Semi 2 — 20h00','⚽ '+F(s3),'⚽ '+F(s4),false,false)}</div>
+      <div style="margin-top:1rem">${mkSlot('Semi 2 — 19h30','⚽ '+F(s3),'⚽ '+F(s4),false,false)}</div>
     </div>
     <div class="arr">›</div>
     <div class="rnd">
       <div class="rlabel">🏆 Grande Final</div>
       <div style="margin-top:2.2rem">
         <div class="mslot" style="border-color:var(--gold)">
-          <div class="mtime" style="color:var(--gold)">Final ⚽ — 21h10</div>
+          <div class="mtime" style="color:var(--gold)">Final ⚽ — 20h00</div>
           <div class="mteam tbd" style="color:var(--gold)">Vencedor Semi 1 <span class="sbox">–</span></div>
           <div class="mteam tbd" style="color:var(--gold)">Vencedor Semi 2 <span class="sbox">–</span></div>
         </div>
@@ -467,8 +467,8 @@ function renderBktV(){
   document.getElementById('bkt-v').innerHTML=`
     <div class="rnd">
       <div class="rlabel">Semifinais</div>
-      <div style="margin-top:1.4rem">${mkSlot('Semi 1 — 19h30','🏐 '+V(s1),'🏐 '+V(s2),false,false,'var(--volei)')}</div>
-      <div style="margin-top:1rem">${mkSlot('Semi 2 — 20h25','🏐 '+V(s3),'🏐 '+V(s4),false,false,'var(--volei)')}</div>
+      <div style="margin-top:1.4rem">${mkSlot('Semi 1 — 20h35','🏐 '+V(s1),'🏐 '+V(s2),false,false,'var(--volei)')}</div>
+      <div style="margin-top:1rem">${mkSlot('Semi 2 — 21h05','🏐 '+V(s3),'🏐 '+V(s4),false,false,'var(--volei)')}</div>
     </div>
     <div class="arr" style="padding-top:2.2rem">›</div>
     <div class="rnd">
@@ -490,16 +490,16 @@ function renderSched(){
   const [fA,fB,fC,fD]=ordF;
   const [vA,vB,vC,vD]=ordV;
   const rows=[
-    {h:'19h00',esp:'—',     conf:'Abertura e apresentação dos times',fase:'Abertura',dur:'5 min',cls:''},
-    {h:'19h05',esp:'futsal',conf:`${F(fA)} × ${F(fB)}`,fase:'Semifinal',dur:'20 min',cls:'bdf'},
-    {h:'19h30',esp:'volei', conf:`${V(vA)} × ${V(vB)}`,fase:'Semifinal',dur:'25 min',cls:'bdv'},
-    {h:'20h00',esp:'futsal',conf:`${F(fC)} × ${F(fD)}`,fase:'Semifinal',dur:'20 min',cls:'bdf'},
-    {h:'20h25',esp:'volei', conf:`${V(vC)} × ${V(vD)}`,fase:'Semifinal',dur:'25 min',cls:'bdv'},
-    {h:'20h55',esp:'—',     conf:'Intervalo — Água, descanso, aquecimento finalistas',fase:'Pausa',dur:'15 min',cls:''},
-    {h:'21h10',esp:'futsal',conf:'⚽ GRANDE FINAL — Futsal',fase:'Final',dur:'20 min',cls:'bdg'},
-    {h:'21h35',esp:'volei', conf:'🏐 GRANDE FINAL — Vôlei',fase:'Final',dur:'25 min',cls:'bdg'},
-    {h:'22h05',esp:'—',     conf:'🎉 Premiação, fotos e encerramento',fase:'Premiação',dur:'25 min',cls:''},
-    {h:'22h30',esp:'—',     conf:'Fim do evento',fase:'—',dur:'—',cls:''},
+    {h:'19h00',esp:'—',     conf:'Abertura e apresentação dos times',fase:'Abertura',dur:'5 min'},
+    {h:'19h05',esp:'futsal',conf:`${F(fA)} × ${F(fB)}`,fase:'Semifinal',dur:'20 min'},
+    {h:'19h30',esp:'futsal',conf:`${F(fC)} × ${F(fD)}`,fase:'Semifinal',dur:'20 min'},
+    {h:'20h00',esp:'futsal',conf:'⚽ GRANDE FINAL — Futsal',fase:'Final',dur:'20 min'},
+    {h:'20h25',esp:'—',     conf:'🔧 Intervalo — Retirar goleiras, montar rede de vôlei',fase:'Montagem',dur:'10 min'},
+    {h:'20h35',esp:'volei', conf:`${V(vA)} × ${V(vB)}`,fase:'Semifinal',dur:'25 min'},
+    {h:'21h05',esp:'volei', conf:`${V(vC)} × ${V(vD)}`,fase:'Semifinal',dur:'25 min'},
+    {h:'21h35',esp:'volei', conf:'🏐 GRANDE FINAL — Vôlei',fase:'Final',dur:'25 min'},
+    {h:'22h05',esp:'—',     conf:'🎉 Premiação, fotos e encerramento',fase:'Premiação',dur:'25 min'},
+    {h:'22h30',esp:'—',     conf:'Fim do evento',fase:'—',dur:'—'},
   ];
   const esporteBadge=esp=>{
     if(esp==='futsal') return '<span class="bdf">Futsal</span>';
@@ -524,11 +524,11 @@ function renderTL(){
   const evts=[
     {t:'19h00',l:'Abertura',c:'var(--gold)'},
     {t:'19h05',l:'⚽ Semi 1 Futsal (20 min)',c:'var(--futsal)'},
-    {t:'19h30',l:'🏐 Semi 1 Vôlei (25 min)',c:'var(--volei)'},
-    {t:'20h00',l:'⚽ Semi 2 Futsal (20 min)',c:'var(--futsal)'},
-    {t:'20h25',l:'🏐 Semi 2 Vôlei (25 min)',c:'var(--volei)'},
-    {t:'20h55',l:'Intervalo (15 min)',c:'var(--muted)'},
-    {t:'21h10',l:'⚽ FINAL Futsal 🏆 (20 min)',c:'var(--futsal)'},
+    {t:'19h30',l:'⚽ Semi 2 Futsal (20 min)',c:'var(--futsal)'},
+    {t:'20h00',l:'⚽ FINAL Futsal 🏆 (20 min)',c:'var(--futsal)'},
+    {t:'20h25',l:'🔧 Intervalo — montar rede de vôlei (10 min)',c:'var(--muted)'},
+    {t:'20h35',l:'🏐 Semi 1 Vôlei (25 min)',c:'var(--volei)'},
+    {t:'21h05',l:'🏐 Semi 2 Vôlei (25 min)',c:'var(--volei)'},
     {t:'21h35',l:'🏐 FINAL Vôlei 🏆 (25 min)',c:'var(--volei)'},
     {t:'22h05',l:'🎉 Premiação',c:'var(--gold)'},
     {t:'22h30',l:'Fim',c:'var(--muted)'},
